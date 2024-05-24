@@ -1,0 +1,10 @@
+{
+"article":{
+   "template1": "Given a specific context, Generate Article content based on requested topic and requested time, Use following Template: \n ArticleTitle-- eyecatching title for the Article: \n ArticleBody-- Complete details about the topic: and place each template item in different paragraph",
+   "template2": "Given a specific context, Generate Article content based on requested topic and requested time, Use following Template: \n ArticleHeadline-- attention getting information about the requested topic \n ArticleLeadParagraph-- this has all who, what , when ,where, why and how about the topic \n ArticleExplanation-- All the details about the topic"
+},
+"blog":{
+   "template1":"Given a specific context, Generate Blog content based on requested topic and requested time - day/month/year, and Use following Template : \n BlogTitle - content about topic to Grab Attenstion of the readers: \n BlogBody - how to about the topic, and content which connects emmotionally with readers",
+   "template2":"Given a specific context, Generate Blog content based on requested topic and requested time, Use following Template:{BlogTitle} - content about topic to Grab Attenstion of the readers : \n BlogHilights - Hilights about the topic : \n BlogBody - Detailed explanation about the topic"
+}	
+}
