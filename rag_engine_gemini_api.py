@@ -9,8 +9,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, AIMessagePromptTemplate
 import json
-from pprint import pprint
-from flask import Flask, jsonify
+from flask import Flask , jsonify
+from flask import json,request
 app = Flask(__name__)
 
 from environment import PINECONE_INDEX, GEMINI_API_KEY
@@ -59,6 +59,7 @@ def contentgenerator_llm(retriever, query, contenttype, format):
         )
     result = qa({"question": query, "query": query, "chat_history": ""})
     result = result["answer"]
+    print(result)
     return result
 
 class LLMResponseArticle:
@@ -69,11 +70,17 @@ class LLMResponseArticle:
        self.ArticleLeadParagraph = ArticleLeadParagraph
        self.ArticleExplanation = ArticleExplanation
 
-@app.route('/contentgeneratorbot/<queryfromfe>/<contenttype>/<format>') 
-def contentgenerator_ai(queryfromfe,contenttype,format):
+@app.route('/contentgeneratorbot', methods=['POST']) 
+def contentgenerator_ai():
+
     #   return retriever_llm(queryfromfe)
-       retriever = retriever_existingdb()
-       response = contentgenerator_llm(retriever, queryfromfe, contenttype, format)
+    data = request.get_json()
+    print(data)
+    queryfromfe = data['queryfromfe']
+    contenttype = data['contenttype']
+    format_type = data['format_type']
+    retriever = retriever_existingdb()
+    response = contentgenerator_llm(retriever, queryfromfe, contenttype, format_type)
     #    print(result)
     #    return result
     #    articleTitle = "" ; articleBody = "" ; articleHeadline = "" ; articleLeadParagraph = "" ; articleExplanation = ""
@@ -95,13 +102,13 @@ def contentgenerator_ai(queryfromfe,contenttype,format):
     #    if contenttype == "blog":
     #         response = jsonify({"ArticleTitle":articleTitle,"ArticleBody":articleBody,"ArticleHeadline":articleHeadline,
     #                             "ArticleLeadParagraph":articleLeadParagraph,"ArticleExplanation":articleExplanation})
-       return response
+    return response
 
-@app.route('/askaibot/<queryfromfe>') 
-def query_ai(queryfromfe):
-    #   return retriever_llm(queryfromfe)
-       retriever = retriever_existingdb()
-       return query_llm(retriever, queryfromfe)
+# @app.route('/askaibot/<queryfromfe>') 
+# def query_ai(queryfromfe):
+#     #   return retriever_llm(queryfromfe)
+#     #    retriever = retriever_existingdb()
+    #    return query_llm(retriever, queryfromfe)
 
 if __name__ == '__main__':
     #
