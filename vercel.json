@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "builds": [{ "src": "gemini_translation.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "gemini_translation.py" }]
+}
