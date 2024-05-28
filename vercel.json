@@ -2,10 +2,12 @@
   "version": 2,
   "builds": [
     { "src": "gemini_translation.py", "use": "@vercel/python" },
-    { "src": "rag_engine_gemini_api.py", "use": "@vercel/python" }
+    { "src": "gemini_img_desc.py", "use": "@vercel/python" },
+    { "src": "genaibot.py", "use": "@vercel/python" }
   ],
   "routes": [
     { "src": "/aitranslator", "dest": "gemini_translation.py" },
-    { "src": "/contentgeneratorbot", "dest": "rag_engine_gemini_api.py" }
+    { "src": "/imgtotxt", "dest": "gemini_img_desc.py" },
+    { "src": "/askgenaibot", "dest": "genaibot.py" }
   ]
 }
