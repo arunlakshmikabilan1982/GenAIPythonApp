@@ -76,9 +76,9 @@ def contentgenerator_ai():
     #   return retriever_llm(queryfromfe)
     data = request.get_json()
     print(data)
-    queryfromfe = data['queryfromfe']
-    contenttype = data['contenttype']
-    format_type = data['format_type']
+    queryfromfe = data['Query']
+    contenttype = data['ContentType']
+    format_type = data['FormatType']
     retriever = retriever_existingdb()
     response = contentgenerator_llm(retriever, queryfromfe, contenttype, format_type)
     #    print(result)
