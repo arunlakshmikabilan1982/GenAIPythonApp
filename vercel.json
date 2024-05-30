@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "gemini_translation.py", "use": "@vercel/python" },
+    { "src": "gemini_img_desc.py", "use": "@vercel/python" },
+    { "src": "genaibot.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/aitranslator", "dest": "gemini_translation.py" },
+    { "src": "/imgtotxt", "dest": "gemini_img_desc.py" },
+    { "src": "/askgenaibot", "dest": "genaibot.py" }
+  ]
+}
