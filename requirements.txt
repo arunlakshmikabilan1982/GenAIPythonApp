@@ -13,3 +13,6 @@ llama-index-embeddings-gemini
 llama-index-vector-stores-pinecone
 langchain-google-genai
 flask
+
+base64
+PIL
