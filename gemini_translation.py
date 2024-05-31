@@ -3,8 +3,6 @@ import google.generativeai as genai
 from flask import Flask, json, request
 from environment import GEMINI_API_KEY
 
-from langchain import PromptTemplate
-
 app = Flask(__name__)
 
 # Get the API key from the environment variables
