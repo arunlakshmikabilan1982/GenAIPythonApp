@@ -18,16 +18,17 @@ def imagetotext():
       #it essentially creates a temporary in-memory file containing the raw image data.
       
       image = Image.open(io.BytesIO(base64.decodebytes(bytes(byte, "utf-8"))))
-      prompt_template: str = """/
-          Describe the object in the image in detail, market price, focusing on the objects, scene, colors, and composition/
-          detailed information of how to use, how it is manufactured/
-          only provide the configuration details don't mention pros and cons
-          question: {question}. Do not answer any question which is not related to that image/
-          if you don't know the answer mention I don't have information regarding that/
-          mention Thank you and feel free to come again!!/
+      prompt_template: str = """
+          Use below template to provide the Image details
+          Template:
+          Title-- eyecatching title for the image, should be atleast 5 words.
+          Description-- All the important details like configuration, features about the image, Not to exceed 50 words.
+          Keywords-- keywords for the image provided.
+          role: SEO Metadata Content Creator
+          question: {question}.
           """    
       prompt = PromptTemplate.from_template(template=prompt_template)
-      input = "describe the object in the image"
+      input = "describe the object in the image with provided template and role"
       prompt_formatted_str: str = prompt.format(question=input)
       model = genai.GenerativeModel('gemini-pro-vision')
       response = model.generate_content([prompt_formatted_str,image])  
