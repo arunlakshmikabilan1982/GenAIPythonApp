@@ -1,33 +1,55 @@
+import streamlit as st
 import google.generativeai as genai
-from flask import Flask, json, request
-from environment import GEMINI_API_KEY
 from langchain_core.prompts import PromptTemplate
 import base64
 from PIL import Image
 import io
- 
-app = Flask(__name__)
+
+# Configure the Generative AI API
+GEMINI_API_KEY = "YOUR_API_KEY"  # Replace "YOUR_API_KEY" with your actual API key
 genai.configure(api_key=GEMINI_API_KEY)
- 
-@app.route('/imgtotxt', methods=['POST'])  
-def imagetotext():    
- 
-      data = json.loads(request.data)
-      byte = data.get('image')
-      image = Image.open(io.BytesIO(base64.decodebytes(bytes(byte, "utf-8"))))
-      prompt_template: str = """/
-          Describe the object in the image in detail, market price, focusing on the objects, scene, colors, and composition/
-          detailed information of how to use, how it is manufactured/
-          question: {question}. Do not answer any question which is not related to that image/
-          if you don't know the answer mention I don't have information regarding that/
-          mention Thank you and feel free to come again!!/
-          """    
-      prompt = PromptTemplate.from_template(template=prompt_template)
-      input = "describe the object in the image"
-      prompt_formatted_str: str = prompt.format(question=input)
-      model = genai.GenerativeModel('gemini-pro-vision')
-      response = model.generate_content([prompt_formatted_str,image])  
-      return response.text
- 
-if __name__ == '__main__':
-   app.run(host="localhost", port=8000, debug=True)  
+
+# Streamlit app
+st.title("Image to Text Converter")
+
+# Input field for image upload
+uploaded_image = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
+
+# Function to convert image to text
+def convert_image_to_text(image):
+    # Read the uploaded image
+    img = Image.open(image)
+    img_byte_arr = io.BytesIO()
+    img.save(img_byte_arr, format='PNG')
+    img_byte_arr = img_byte_arr.getvalue()
+
+    # Prompt template for image description
+    prompt_template = """
+    Describe the object in the image in detail, including market price, focusing on the objects, scene, colors, and composition.
+    Provide detailed information on how to use and how it is manufactured.
+    Answer the question: {question}. Do not answer any questions unrelated to the image.
+    If you don't know the answer, mention "I don't have information regarding that."
+    Thank you and feel free to come again!!
+    """
+    
+    # Format the prompt with the input question
+    prompt = PromptTemplate.from_template(template=prompt_template)
+    input_question = "describe the object in the image"
+    formatted_prompt = prompt.format(question=input_question)
+
+    # Generate content using Generative AI API
+    model = genai.GenerativeModel('gemini-pro-vision')
+    response = model.generate_content([formatted_prompt, img_byte_arr])
+
+    # Return the generated text
+    return response.text
+
+# Convert image to text when "Convert" button is clicked
+if st.button("Convert"):
+    if uploaded_image is not None:
+        text_output = convert_image_to_text(uploaded_image)
+        st.success("Text generated from the image:")
+        st.write(text_output)
+    else:
+        st.error("Please upload an image.")
+
