@@ -5,10 +5,13 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, AIMessagePromptTemplate
 import json
+import asyncio
+# Create a new event loop
+loop = asyncio.new_event_loop()
+# Set the event loop as the current event loop
+asyncio.set_event_loop(loop)
 
-GEMINI_API_KEY="AIzaSyDcF1LrSLzb9l3B7NfS_5LFNyoGnMv6K_g"
-PINECONE_INDEX="geminiindex"
-
+from environment import PINECONE_INDEX, GEMINI_API_KEY
 
 # Load prompts from JSON file
 with open('./data/prompttemplates.json') as json_data:
@@ -26,6 +29,42 @@ def retriever_existingdb():
     vectorstore = PineconeVectorStore.from_existing_index(index_name=PINECONE_INDEX, embedding=embeddings)
     retriever = vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": 0.5})
     return retriever
+
+def query_llm(retriever, query):
+    general_system_template = r""" 
+    Given a specific context, Provide 10 seperate paragraphed Answers except for Events.
+    Do not provide paragraphed answers for Events related queries.
+    Generate content as specified for Article, Blog queries and use Article and Blog generic templates, generate Article and Blog content based on requested timeframe. do not use numbering.
+    Do not generate content for multiple events. 
+    For Events use below Template to answer, Generate More Content for one asked event and fetch event based on requested timeframe.
+    Event Title:
+    Description:
+    Date and Time:
+    Location:
+    ----
+    {context}
+    ----
+    """
+
+    general_ai_template = "role:content creator"
+    general_user_template = "Question:```{query}```"
+    messages = [
+            SystemMessagePromptTemplate.from_template(general_system_template),
+            HumanMessagePromptTemplate.from_template(general_user_template),
+            AIMessagePromptTemplate.from_template(general_ai_template)
+               ]
+    qa_prompt = ChatPromptTemplate.from_messages( messages )
+ 
+    qa = ConversationalRetrievalChain.from_llm(
+            llm=model,
+            retriever=retriever,
+            chain_type="stuff",
+            verbose=True,
+            combine_docs_chain_kwargs={'prompt': qa_prompt}
+        )
+    result = qa({"question": query, "query": query, "chat_history": ""})
+    result = result["answer"]
+    return result
 
 # Define content generator function
 def contentgenerator_llm(retriever, query, contenttype, format):
@@ -60,10 +99,33 @@ st.title("Chat with Organizational Data")
 
 # Content Generator Functionality
 queryfromfe = st.text_input("Enter your query:")
-contenttype = st.selectbox("Content Type", ["article", "blog"])  # Assuming you have these options
-format_type = st.selectbox("Format Type", ["template1", "template2"])  # Assuming you have these options
+querybytype = st.checkbox("QueryByType: Article or Blog")
+contenttype = st.selectbox("Content Type", ["Article", "Blog"])  # Assuming you have these options
+format_type = st.selectbox("Format Type", ["Template1", "Template2"])  # Assuming you have these options
+
+if(contenttype == "Article" and format_type == "Template1"):
+   st.text("Article Template 1:\nArticle Title \n" +
+                            "Article Body \n")
+   
+if(contenttype == "Article" and format_type == "Template2"):
+   st.text("Article Template 2:\nArticle Headline \n" +
+                            "Article LeadParagraph \n" +
+                            "Article Explanation \n")   
+   
+if(contenttype == "Blog" and format_type == "Template1"):
+   st.text("Blog Template 1:\nBlog Title \n" +
+                            "Blog Body \n")
+   
+if(contenttype == "Blog" and format_type == "Template2"):
+   st.text("Blog Template 2:\nBlog Title \n" +
+                            "Blog High-lights \n" +
+                            "Blog Body \n") 
+
 
 if st.button("Generate Content"):
     retriever = retriever_existingdb()
-    response = contentgenerator_llm(retriever, queryfromfe, contenttype, format_type)
+    if(querybytype == True):
+       response = contentgenerator_llm(retriever, queryfromfe, contenttype.lower(), format_type.lower())
+    else:
+       response = query_llm(retriever, queryfromfe)
     st.write("Response:", response)
