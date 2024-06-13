@@ -9,7 +9,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=api_key)
  
 st.set_page_config(page_title="Language Translator", page_icon="🌐")
-st.header("Translator 📖")
+st.header("Interactive Language Translation Tool")
  
 model = genai.GenerativeModel('gemini-pro')
 text = st.text_area("Enter text to translate:")
