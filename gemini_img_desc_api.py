@@ -9,7 +9,7 @@ import io
 app = Flask(__name__)
 genai.configure(api_key=GEMINI_API_KEY)
  
-@app.route('/imgtotxt', methods=['POST'])  
+@app.route('/imgtodescription', methods=['POST'])  
 def imagetotext():    
  
       data = json.loads(request.data)
