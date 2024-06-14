@@ -119,7 +119,7 @@ queryfromfe = st.text_input("Enter your query:")
 querybytype = st.checkbox("QueryByType: Article or Blog")
 
 
-if not querybytype:
+if querybytype:
     contenttype = st.selectbox("Content Type", ["Article", "Blog"])  # Assuming you have these options
     format_type = st.selectbox("Format Type", ["Template1", "Template2"])  # Assuming you have these options
 
@@ -144,7 +144,7 @@ if not querybytype:
 
 if st.button("Generate Content"):
     retriever = retriever_existingdb()
-    if(querybytype != True):
+    if(querybytype == True):
        response = contentgenerator_llm(retriever, queryfromfe, contenttype.lower(), format_type.lower())
     else:
        response = query_llm(retriever, queryfromfe)
