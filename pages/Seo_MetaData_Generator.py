@@ -8,7 +8,7 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, AIMessagePromptTemplate
 from langchain_core.prompts import PromptTemplate
-from environment import PINECONE_SEO_INDEX, GEMINI_API_KEY, PINECONE_API_KEY
+# from environment import PINECONE_SEO_INDEX, GEMINI_API_KEY, PINECONE_API_KEY
 from PIL import Image
 import langchain
 langchain.verbose = False
@@ -22,11 +22,24 @@ import openpyxl
 import tempfile
 import requests
 import io, json
+from dotenv import load_dotenv
+import os
 
-pc = Pinecone(api_key=PINECONE_API_KEY)
-# pineconeindex = pc.Index(PINECONE_SEO_INDEX)
-genai.configure(api_key=GEMINI_API_KEY)
+
+load_dotenv()  
+
+
+# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+# PINECONE_SEO_INDEX = os.getenv("PINECONE_SEO_INDEX")
+
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+PINECONE_SEO_INDEX = st.secrets["PINECONE_SEO_INDEX"]
  
+# pineconeindex = pc.Index(PINECONE_SEO_INDEX)
+pc = Pinecone(api_key=PINECONE_API_KEY)
+genai.configure(api_key=GEMINI_API_KEY)
 def imagetotext(imageurl):
     #   converted_string = base64.b64encode(imageurl.read()) 
     #   print(converted_string)

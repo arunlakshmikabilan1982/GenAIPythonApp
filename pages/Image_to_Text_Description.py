@@ -5,9 +5,11 @@ from PIL import Image
 import google.generativeai as genai
 from langchain import PromptTemplate
  
-load_dotenv()  
+# load_dotenv()  
  
-api_key = os.getenv("GEMINI_API_KEY")
+# api_key = os.getenv("GEMINI_API_KEY")
+api_key = st.secrets["GEMINI_API_KEY"]
+
 genai.configure(api_key=api_key)
  
 st.set_page_config(page_title="Description of Products", page_icon="📸")
