@@ -11,7 +11,24 @@ loop = asyncio.new_event_loop()
 # Set the event loop as the current event loop
 asyncio.set_event_loop(loop)
 
-from environment import PINECONE_INDEX, GEMINI_API_KEY
+# from environment import PINECONE_INDEX, GEMINI_API_KEY
+
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()  
+
+
+# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+# PINECONE_SEO_INDEX = os.getenv("PINECONE_SEO_INDEX")
+
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+PINECONE_SEO_INDEX = st.secrets["PINECONE_SEO_INDEX"]
+PINECONE_INDEX = st.secrets["PINECONE_INDEX"]
+
 
 # Load prompts from JSON file
 with open('./data/prompttemplates.json') as json_data:

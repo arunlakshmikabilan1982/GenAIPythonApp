@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 from langchain import PromptTemplate
  
 load_dotenv()  # take environment variables from .env.
-api_key = os.getenv("GEMINI_API_KEY")
+
+api_key = st.secrets["GEMINI_API_KEY"]
+
+# api_key = os.getenv("GEMINI_API_KEY")
 model = genai.GenerativeModel('gemini-pro')
 genai.configure(api_key=api_key)
  
