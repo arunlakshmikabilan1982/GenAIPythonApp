@@ -117,26 +117,29 @@ st.title("Chat with Organizational Data")
 # Content Generator Functionality
 queryfromfe = st.text_input("Enter your query:")
 querybytype = st.checkbox("QueryByType: Article or Blog")
-contenttype = st.selectbox("Content Type", ["Article", "Blog"])  # Assuming you have these options
-format_type = st.selectbox("Format Type", ["Template1", "Template2"])  # Assuming you have these options
 
-if(contenttype == "Article" and format_type == "Template1"):
-   st.text("Article Template 1:\nArticle Title \n" +
-                            "Article Body \n")
-   
-if(contenttype == "Article" and format_type == "Template2"):
-   st.text("Article Template 2:\nArticle Headline \n" +
-                            "Article LeadParagraph \n" +
-                            "Article Explanation \n")   
-   
-if(contenttype == "Blog" and format_type == "Template1"):
-   st.text("Blog Template 1:\nBlog Title \n" +
-                            "Blog Body \n")
-   
-if(contenttype == "Blog" and format_type == "Template2"):
-   st.text("Blog Template 2:\nBlog Title \n" +
-                            "Blog High-lights \n" +
-                            "Blog Body \n") 
+
+if querybytype:
+    contenttype = st.selectbox("Content Type", ["Article", "Blog"])  # Assuming you have these options
+    format_type = st.selectbox("Format Type", ["Template1", "Template2"])  # Assuming you have these options
+
+    if(contenttype == "Article" and format_type == "Template1"):
+        st.text("Article Template 1:\nArticle Title \n" +
+                                "Article Body \n")
+    
+    if(contenttype == "Article" and format_type == "Template2"):
+        st.text("Article Template 2:\nArticle Headline \n" +
+                                "Article LeadParagraph \n" +
+                                "Article Explanation \n")   
+    
+    if(contenttype == "Blog" and format_type == "Template1"):
+        st.text("Blog Template 1:\nBlog Title \n" +
+                                "Blog Body \n")
+    
+    if(contenttype == "Blog" and format_type == "Template2"):
+        st.text("Blog Template 2:\nBlog Title \n" +
+                                "Blog High-lights \n" +
+                                "Blog Body \n") 
 
 
 if st.button("Generate Content"):
