@@ -7,9 +7,9 @@
     { "src": "genaibot_api.py", "use": "@vercel/python" }
   ],
   "routes": [
-    { "src": "/aitranslator", "dest": "gemini_translation.py" },
+    { "src": "/aitranslator", "dest": "gemini_translation_api.py" },
     { "src": "/imgtodescription", "dest": "gemini_img_desc_api.py" },
-    { "src": "/imgtotxt", "dest": "gemini_img_desc.py" },
+    { "src": "/imgtotxt", "dest": "gemini_img_to_text_api.py" },
     { "src": "/askgenaibot", "dest": "genaibot_api.py" }
   ]
 }
