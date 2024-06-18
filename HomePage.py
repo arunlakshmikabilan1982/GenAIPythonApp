@@ -1,14 +1,14 @@
 import streamlit as st
 
-website_url = "https://vamsi-genai.streamlit.app/"
+website_url = "https://automatic-succotash-7qw5p9pr9grcwrxj-8501.app.github.dev"
 
 # Define the URLs of the images and the URLs of the pages you want to navigate to
 image_urls = [
-    ("https://www.cioinsight.com/wp-content/uploads/2022/08/Chatbots-in-Machine-Learning-scaled.jpeg", website_url+"/Chat_Bot","ChatBot"),
+    ("https://www.cioinsight.com/wp-content/uploads/2022/08/Chatbots-in-Machine-Learning-scaled.jpeg", website_url+"/Conversational_Ai","Conversational Ai"),
     ("https://tse2.mm.bing.net/th?id=OIP.MgRQ7QtM_TvVtnuwOnD-jAHaEK&pid=Api&P=0&h=220", website_url+"/Content_Generator","Content Generator"),
-    ("https://analyticsindiamag.com/wp-content/uploads/2020/05/chatbot_adoption.jpg", website_url+"/Image_to_Text_Description","Image to Text"),
-    ("https://aviancetechnologies.com/wp-content/uploads/2022/05/free-meta-tag-generator.jpg", website_url+"/Seo_MetaData_Generator","Seo MetaData Generator"),
-    ("https://murf.ai/resources/media/posts/97/concept-program-smartphone-translate-from-different-languages.jpg", website_url+"/Translator","Translator")
+    ("https://analyticsindiamag.com/wp-content/uploads/2020/05/chatbot_adoption.jpg", website_url+"/Image_Description","Image Description"),
+    ("https://aviancetechnologies.com/wp-content/uploads/2022/05/free-meta-tag-generator.jpg", website_url+"/Seo_Generator","Seo Generator"),
+    ("https://murf.ai/resources/media/posts/97/concept-program-smartphone-translate-from-different-languages.jpg", website_url+"/Language_Translator","Language Translator")
 ]
 
 

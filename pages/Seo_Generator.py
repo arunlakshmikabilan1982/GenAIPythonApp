@@ -244,11 +244,11 @@ def uploadfile(uploaded_file):
         st.error("Please upload a valid Excel file.")
 
 def main():
-    st.title("SEO Metadata Generator")
+    st.title("SEO Metadata Generator - Assets")
     uploaded_file = st.file_uploader("Choose the file to upload")
     if uploaded_file is not None:
-        st.write(uploaded_file)
-        uploadfile(uploaded_file)
+        with st.spinner("Generating MetaData..."):
+            uploadfile(uploaded_file)
         
 if __name__ == "__main__":
     main()

@@ -6,29 +6,15 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, AIMessagePromptTemplate
 import json
 import asyncio
-# Create a new event loop
-loop = asyncio.new_event_loop()
-# Set the event loop as the current event loop
-asyncio.set_event_loop(loop)
-
-# from environment import PINECONE_INDEX, GEMINI_API_KEY
-
 from dotenv import load_dotenv
 import os
 
-
-load_dotenv()  
-
-
-# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-# PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-# PINECONE_SEO_INDEX = os.getenv("PINECONE_SEO_INDEX")
-
+# Load environment variables
+load_dotenv()
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
 PINECONE_SEO_INDEX = st.secrets["PINECONE_SEO_INDEX"]
 PINECONE_INDEX = st.secrets["PINECONE_INDEX"]
-
 
 # Load prompts from JSON file
 with open('./data/prompttemplates.json') as json_data:
@@ -47,6 +33,7 @@ def retriever_existingdb():
     retriever = vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": 0.5})
     return retriever
 
+# Define function for querying LLm
 def query_llm(retriever, query):
     general_system_template = r""" 
     Given a specific context, Provide 10 seperate paragraphed Answers except for Events.
@@ -83,7 +70,7 @@ def query_llm(retriever, query):
     result = result["answer"]
     return result
 
-# Define content generator function
+# Define function for content generation using LLm
 def contentgenerator_llm(retriever, query, contenttype, format):
     general_system_template = prompts[contenttype][format] + r"""
     ----
@@ -112,40 +99,40 @@ def contentgenerator_llm(retriever, query, contenttype, format):
     return result
 
 # Streamlit UI
-st.title("Chat with Organizational Data")
+st.title("Content Ideation through GenAi - Own Data")
 
 # Content Generator Functionality
 queryfromfe = st.text_input("Enter your query:")
 querybytype = st.checkbox("QueryByType: Article or Blog")
 
-
 if querybytype:
     contenttype = st.selectbox("Content Type", ["Article", "Blog"])  # Assuming you have these options
     format_type = st.selectbox("Format Type", ["Template1", "Template2"])  # Assuming you have these options
 
-    if(contenttype == "Article" and format_type == "Template1"):
+    if contenttype == "Article" and format_type == "Template1":
         st.text("Article Template 1:\nArticle Title \n" +
-                                "Article Body \n")
-    
-    if(contenttype == "Article" and format_type == "Template2"):
-        st.text("Article Template 2:\nArticle Headline \n" +
-                                "Article LeadParagraph \n" +
-                                "Article Explanation \n")   
-    
-    if(contenttype == "Blog" and format_type == "Template1"):
-        st.text("Blog Template 1:\nBlog Title \n" +
-                                "Blog Body \n")
-    
-    if(contenttype == "Blog" and format_type == "Template2"):
-        st.text("Blog Template 2:\nBlog Title \n" +
-                                "Blog High-lights \n" +
-                                "Blog Body \n") 
+                "Article Body \n")
 
+    if contenttype == "Article" and format_type == "Template2":
+        st.text("Article Template 2:\nArticle Headline \n" +
+                "Article LeadParagraph \n" +
+                "Article Explanation \n")
+
+    if contenttype == "Blog" and format_type == "Template1":
+        st.text("Blog Template 1:\nBlog Title \n" +
+                "Blog Body \n")
+
+    if contenttype == "Blog" and format_type == "Template2":
+        st.text("Blog Template 2:\nBlog Title \n" +
+                "Blog High-lights \n" +
+                "Blog Body \n")
 
 if st.button("Generate Content"):
-    retriever = retriever_existingdb()
-    if(querybytype == True):
-       response = contentgenerator_llm(retriever, queryfromfe, contenttype.lower(), format_type.lower())
-    else:
-       response = query_llm(retriever, queryfromfe)
+    # Display loading spinner while generating response
+    with st.spinner("Generating content..."):
+        retriever = retriever_existingdb()
+        if querybytype:
+            response = contentgenerator_llm(retriever, queryfromfe, contenttype.lower(), format_type.lower())
+        else:
+            response = query_llm(retriever, queryfromfe)
     st.write("Response:", response)
