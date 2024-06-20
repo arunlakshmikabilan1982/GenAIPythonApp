@@ -124,8 +124,6 @@
 # watchdog==4.0.1
 # Werkzeug==3.0.3
 # yarl==1.9.4
-
-
 google-generativeai==0.5.4
 Flask==3.0.3
 langchain-core==0.2.5
