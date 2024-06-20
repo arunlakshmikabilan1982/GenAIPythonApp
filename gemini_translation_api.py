@@ -16,7 +16,7 @@ def genaitranslator():
    sourcelanguage = data['sourcelanguage']
    targetlanguage = data['targetlanguage']
    text = data['text']
-   response = model.generate_content(f"Translate the following sentence from language {sourcelanguage} to language {targetlanguage}: {text}")
+   response = model.generate_content(f"Just Translate the sentence from language {sourcelanguage} to language {targetlanguage}: {text} and display only translated text")
    return response.text
 
 if __name__ == '__main__':
