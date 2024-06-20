@@ -19,7 +19,7 @@ def imagetotext():
       
       image = Image.open(io.BytesIO(base64.decodebytes(bytes(byte, "utf-8"))))
       prompt_template: str = """
-          Given a specific context, Generate SEO Metadata details in 'Json Format' as per provided template, Strictly Use below Template:
+          Given a specific context, Generate SEO Metadata details in 'Json Format' as per provided template, Strictly Use below Template dont mention like '''json:
           Title: eyecatching title for the image, should be atleast 5 words
           Description: All the important details like configuration,features about the image, Not to exceed 50 words, should be in paragraph
           Keywords: keywords for the image provided, should be string value
