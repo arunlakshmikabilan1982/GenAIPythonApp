@@ -8,6 +8,9 @@ import json
 import asyncio
 from dotenv import load_dotenv
 import os
+from Navigation import sidebar
+
+sidebar()
 
 # Load environment variables
 load_dotenv()
@@ -99,7 +102,7 @@ def contentgenerator_llm(retriever, query, contenttype, format):
     return result
 
 # Streamlit UI
-st.title("Content Ideation through GenAi - Own Data")
+st.title("Content Ideation Through GENAI - Own Data")
 
 # Content Generator Functionality
 queryfromfe = st.text_input("Enter your query:")

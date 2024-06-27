@@ -5,6 +5,6 @@
 },
 "blog":{
    "template1":"Given a specific context, Generate Blog content based on requested topic and requested time - day/month/year, and Use following Template : \n BlogTitle - content about topic to Grab Attenstion of the readers: \n BlogBody - how to about the topic, and content which connects emmotionally with readers",
-   "template2":"Given a specific context, Generate Blog content based on requested topic and requested time, Use following Template:{BlogTitle} - content about topic to Grab Attenstion of the readers : \n BlogHilights - Hilights about the topic : \n BlogBody - Detailed explanation about the topic"
+   "template2":"Given a specific context, Generate Blog content based on requested topic and requested time, Use following Template:\n BlogTitle - content about topic to Grab Attenstion of the readers : \n BlogHilights - Hilights about the topic : \n BlogBody - Detailed explanation about the topic"
 }	
 }

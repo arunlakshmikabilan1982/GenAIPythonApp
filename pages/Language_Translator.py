@@ -2,12 +2,15 @@ import os
 import streamlit as st
 import google.generativeai as genai
 from dotenv import load_dotenv
+from Navigation import sidebar
+
+sidebar()
  
 load_dotenv()
 api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
  
-st.set_page_config(page_title="Language Translator", page_icon="🌐")
+# st.set_page_config(page_title="Language Translator", page_icon="🌐")
 st.header("Interactive Language Translation Tool")
  
 model = genai.GenerativeModel('gemini-pro')
