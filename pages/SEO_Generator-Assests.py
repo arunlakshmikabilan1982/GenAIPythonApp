@@ -22,6 +22,9 @@ import openpyxl
 import tempfile
 import requests
 import io, json
+from Navigation import sidebar
+
+sidebar()
 
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
@@ -237,7 +240,7 @@ def uploadfile(uploaded_file):
                 st.download_button(
                     label="Download Updated Excel File",
                     data=data,
-                    file_name="updated_file.xlsx",
+                    file_name="SEO_Assets.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
     else:
@@ -247,7 +250,7 @@ def main():
     st.title("SEO Metadata Generator - Assets")
     uploaded_file = st.file_uploader("Choose the file to upload")
     if uploaded_file is not None:
-        with st.spinner("Generating MetaData..."):
+        with st.spinner("Generating SEO MetaData..."):
             uploadfile(uploaded_file)
         
 if __name__ == "__main__":

@@ -4,6 +4,9 @@ import os
 from PIL import Image
 import google.generativeai as genai
 from langchain import PromptTemplate
+from Navigation import sidebar
+
+sidebar()
 
 # Load environment variables (if necessary)
 # load_dotenv()
@@ -13,7 +16,7 @@ api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
 
 # Set Streamlit page configuration
-st.set_page_config(page_title="Description of Products", page_icon="📸")
+# st.set_page_config(page_title="Description of Products", page_icon="📸")
 
 # Define prompt template for image description
 prompt_template: str = """/
