@@ -5,10 +5,14 @@ from io import BytesIO
 import docx
 from fpdf import FPDF
 
-api_key = os.getenv("AIzaSyDcF1LrSLzb9l3B7NfS_5LFNyoGnMv6K_g")
+from Navigation import sidebar
+
+sidebar()
+
+api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
 
-st.set_page_config(page_title="File Translator", page_icon="📄")
+# st.set_page_config(page_title="File Translator", page_icon="📄")
 st.header("File Translator 🌐")
 
 model = genai.GenerativeModel('gemini-pro')
@@ -25,11 +29,11 @@ def translate_file_in_docx(file, source_lang, target_lang, file_name):
     for para in doc.paragraphs:
         text = para.text
         if text:
-            st.write(text)
+            # st.write(text)
             translated_text = translate_text(text, source_lang, target_lang)
-            st.write(translated_text)                
+            # st.write(translated_text)                
             document.add_paragraph(translated_text)
-            document.save(f'{file_name}')                 
+            document.save(f'Downloads/{file_name}')                 
     print('Data has been written to example.docx')
 
 def translate_file_in_pdf(file, source_lang, target_lang, file_name):
