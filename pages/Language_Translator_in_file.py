@@ -6,8 +6,13 @@ import docx
 from fpdf import FPDF
 import PyPDF2
 
-api_key = os.getenv("AIzaSyDcF1LrSLzb9l3B7NfS_5LFNyoGnMv6K_g")
+from Navigation import sidebar
+
+sidebar()
+
+api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
+
 model = genai.GenerativeModel('gemini-pro')
 
 def translate_text(text, source_lang, target_lang):
@@ -26,6 +31,7 @@ def translate_file_in_docx(file, source_lang, target_lang):
     translated_doc.save(translated_doc_bytes)
     translated_doc_bytes.seek(0)
     return translated_doc_bytes
+
 
 def translate_file_in_pdf(file, source_lang, target_lang, file_name):
     pdf_reader = PyPDF2.PdfReader(file)

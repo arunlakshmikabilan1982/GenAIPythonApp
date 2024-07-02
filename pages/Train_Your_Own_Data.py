@@ -14,7 +14,7 @@ from Navigation import sidebar
 sidebar()
 
 # Initialize Streamlit page
-st.set_page_config(page_title="Infant Food Recipes")
+# st.set_page_config(page_title="Infant Food Recipes")
 
 # Load environment variables
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
