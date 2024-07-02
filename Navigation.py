@@ -8,7 +8,7 @@ def sidebar():
 
     if option == 'REQUIREMENT AI':
         # st.sidebar.markdown('<a style="color: #498CC7; font-size: 16px; text-decoration: none; display: block; padding: 8px 0;" href="/Content_Generator" target="_self">Auto Pre-Sales Analysis</a>', unsafe_allow_html=True)
-        st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="/Conversational_AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png" width="45px" height="45px" style="margin-right: 10px;">Auto Pre-Sales Analysis</a>',unsafe_allow_html=True)
+        st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="Conversational_AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png" width="45px" height="45px" style="margin-right: 10px;">Auto Pre-Sales Analysis</a>',unsafe_allow_html=True)
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="/Conversational_AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968875.png" width="45px" height="45px" style="margin-right: 10px;">JIRA Story Analysis</a>',unsafe_allow_html=True)
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="/Conversational_AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/7991/7991055.png" width="45px" height="45px" style="margin-right: 10px;">Design Analysis</a>',unsafe_allow_html=True)
         
