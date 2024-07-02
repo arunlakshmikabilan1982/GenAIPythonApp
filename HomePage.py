@@ -3,6 +3,8 @@ from Navigation import sidebar
 
 sidebar()
 
+
+
 website_url = "https://automatic-succotash-7qw5p9pr9grcwrxj-8501.app.github.dev"
 
 # Define the URLs of the images and the URLs of the pages you want to navigate to
