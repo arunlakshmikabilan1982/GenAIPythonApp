@@ -9,6 +9,10 @@ from docx import Document
 from fpdf import FPDF
 from io import BytesIO
 from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader
+from Navigation import sidebar
+
+sidebar()
+
 
 # api_key = st.secrets["GEMINI_API_KEY"]
 from environment import GEMINI_API_KEY
