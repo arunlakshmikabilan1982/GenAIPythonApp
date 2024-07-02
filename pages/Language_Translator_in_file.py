@@ -51,8 +51,8 @@ def translate_file_in_pdf(file, source_lang, target_lang, file_name):
     return translated_pdf_filename
 
 def main():
-    st.set_page_config(page_title="File Translator", page_icon="📄")
-    st.header("File Translator 🌐")
+    # st.set_page_config(page_title="File Translator", page_icon="📄")
+    # st.header("File Translator 🌐")
 
     uploaded_file = st.file_uploader("Upload a file (.docx , pdf)", type=['docx', 'pdf'])
     if uploaded_file is not None:
