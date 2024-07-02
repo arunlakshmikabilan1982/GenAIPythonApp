@@ -9,6 +9,10 @@ from docx import Document
 from fpdf import FPDF
 from io import BytesIO
 from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader
+from Navigation import sidebar
+
+sidebar()
+
 
 # api_key = st.secrets["GEMINI_API_KEY"]
 from environment import GEMINI_API_KEY
@@ -16,10 +20,10 @@ genai.configure(api_key=GEMINI_API_KEY)
 TMP_DIR = Path(__file__).resolve().parent.joinpath('data', 'tmp')
 
 # Configure Streamlit page
-st.set_page_config(page_title="Conversational AI", page_icon="🤖")
+# st.set_page_config(page_title="Conversational AI", page_icon="🤖")
 
 # Header and initial setup
-st.header("Pre Sale Requirements Analysis")
+st.header("Auto Pre Sale Analysis")
 
 st.session_state.uploaded_file = st.file_uploader("Choose the file to upload")
 
