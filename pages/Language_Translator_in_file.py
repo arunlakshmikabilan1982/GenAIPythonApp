@@ -33,7 +33,7 @@ def translate_file_in_docx(file, source_lang, target_lang, file_name):
             translated_text = translate_text(text, source_lang, target_lang)
             # st.write(translated_text)                
             document.add_paragraph(translated_text)
-            document.save(f'Downloads/{file_name}')                 
+            document.save(f'{file_name}')                 
     print('Data has been written to example.docx')
 
 def translate_file_in_pdf(file, source_lang, target_lang, file_name):
