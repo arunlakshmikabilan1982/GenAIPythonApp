@@ -23,7 +23,7 @@ TMP_DIR = Path(__file__).resolve().parent.joinpath('data', 'tmp')
 st.set_page_config(page_title="Conversational AI", page_icon="🤖")
 
 # Header and initial setup
-st.header("Pre Sale Requirements Analysis")
+st.header("Pre-Sale Analysis")
 
 st.session_state.uploaded_file = st.file_uploader("Choose the file to upload")
 

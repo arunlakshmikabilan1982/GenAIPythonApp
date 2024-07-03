@@ -93,7 +93,8 @@ def boot():
         process_documents()
 
     # Sitemap URL input section
-    st.session_state.sitemapurl = st.text_input("Provide Sitemap Url")
+    st.session_state.sitemapurl = st.text_area("Provide Sitemap Url", key="query_input")
+    # st.session_state.sitemapurl = st.text_input("Provide Sitemap Url")
 
     if st.button("Submit Sitemap URL"):
         process_sitemapdocs()
