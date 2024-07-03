@@ -34,21 +34,21 @@ def translate_file_in_docx(file, source_lang, target_lang):
     translated_doc_bytes.seek(0)
     return translated_doc_bytes
 
-def translate_file_in_pdf(file, source_lang, target_lang, file_name):
-    doc = docx.Document(BytesIO(file.read()))
-    fpdf = FPDF()
-    fpdf.add_page()    
-    fpdf.set_font("Arial", size=12)
-    for para in doc.paragraphs:
-        text = para.text
-        if text:
-            translated_text = translate_text(text, source_lang, target_lang)
-            st.write(translated_text)
-            translated_text = translated_text.encode('latin-1', 'replace').decode('latin-1')
-            fpdf.multi_cell(0, 10, txt=translated_text)
-    translated_pdf_filename = "Translated_file.pdf"
-    fpdf.output(translated_pdf_filename)
-    return translated_pdf_filename
+# def translate_file_in_pdf(file, source_lang, target_lang, file_name):
+#     doc = docx.Document(BytesIO(file.read()))
+#     fpdf = FPDF()
+#     fpdf.add_page()    
+#     fpdf.set_font("Arial", size=12)
+#     for para in doc.paragraphs:
+#         text = para.text
+#         if text:
+#             translated_text = translate_text(text, source_lang, target_lang)
+#             st.write(translated_text)
+#             translated_text = translated_text.encode('latin-1', 'replace').decode('latin-1')
+#             fpdf.multi_cell(0, 10, txt=translated_text)
+#     translated_pdf_filename = "Translated_file.pdf"
+#     fpdf.output(translated_pdf_filename)
+#     return translated_pdf_filename
 
 def main():
     # st.set_page_config(page_title="File Translator", page_icon="📄")
@@ -59,27 +59,27 @@ def main():
         source_language = st.selectbox("Select Source Language", ["English", "French", "Spanish", "German", "Arabic"])
         target_language = st.selectbox("Select Target Language", ["French", "Chinese", "Arabic", "Spanish", "German"])
 
-        docx_btn, pdf_btn = st.columns([1, 1])
-        with docx_btn:
-            if st.button("Translate and Download as DOCX"):
-                translated_docx = translate_file_in_docx(uploaded_file, source_language.lower(), target_language.lower())
-                st.write("Translation complete!")
-                st.download_button(
-                    label="Download Translated DOCX",
-                    data=translated_docx,
-                    file_name=f"Translated_{uploaded_file.name}",
-                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                )
-        with pdf_btn:
-            if st.button("Translate and Download as PDF"):
-                translated_pdf = translate_file_in_pdf(uploaded_file, source_language.lower(), target_language.lower(), uploaded_file.name)
-                st.write("Translation complete!")
-                st.download_button(
-                    label="Download Translated PDF",
-                    data=translated_pdf,
-                    file_name="Translated_file.pdf",
-                    mime="application/pdf"
-                )
+        # docx_btn, pdf_btn = st.columns([1, 1])
+        # with docx_btn:
+        if st.button("Translate and Download as DOCX"):
+            translated_docx = translate_file_in_docx(uploaded_file, source_language.lower(), target_language.lower())
+            st.write("Translation complete!")
+            st.download_button(
+                label="Download Translated DOCX",
+                data=translated_docx,
+                file_name=f"Translated_{uploaded_file.name}",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            )
+        # with pdf_btn:
+        #     if st.button("Translate and Download as PDF"):
+        #         translated_pdf = translate_file_in_pdf(uploaded_file, source_language.lower(), target_language.lower(), uploaded_file.name)
+        #         st.write("Translation complete!")
+        #         st.download_button(
+        #             label="Download Translated PDF",
+        #             data=translated_pdf,
+        #             file_name="Translated_file.pdf",
+        #             mime="application/pdf"
+        #         )
 
 if __name__ == "__main__":
     main()
