@@ -9,10 +9,6 @@ from docx import Document
 from fpdf import FPDF
 from io import BytesIO
 from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader
-from Navigation import sidebar
-
-sidebar()
-
 
 # api_key = st.secrets["GEMINI_API_KEY"]
 from environment import GEMINI_API_KEY
@@ -20,10 +16,10 @@ genai.configure(api_key=GEMINI_API_KEY)
 TMP_DIR = Path(__file__).resolve().parent.joinpath('data', 'tmp')
 
 # Configure Streamlit page
-# st.set_page_config(page_title="Conversational AI", page_icon="🤖")
+st.set_page_config(page_title="Conversational AI", page_icon="🤖")
 
 # Header and initial setup
-st.header("Pre-Sale Analysis")
+st.header("Pre Sale Requirements Analysis")
 
 st.session_state.uploaded_file = st.file_uploader("Choose the file to upload")
 
@@ -67,28 +63,24 @@ def load_documents():
 
 def process_docs(docs):
     prompt_template: str = r"""
-          Generate asked details based on {content}, Use below Template strictly:
+          Generate Test cases based on {content}, assuming AI role as {role}, number the test cases, Use below Template:
 
-          Technical Requirements -- List of All the technical requirements mentioned, list should be bulleted
-          Functional Requirements -- List of All the functional requirements mentioned, list should be bulleted 
-          Performance Testing -- All the important details like configuration,features about the image, Not to exceed 50 words, should be in paragraph
-          Hosting -- Mentioned Requirements on Hosting
-          Timeline or Schedule -- Delivery timeline related information, Project Timeline, Schedule details
-          Testing Scpe, QA -- Information related to Scope of Testing of the system or application
-          UX Design -- Information related to UX design, design of the application
-          Security Scanning -- Any requirements for Security Scanning
-          Integrations -- List of all the third-party integrations required, list should be bulleted
-          Support Details -- Post production activities, services, support required.
-          Warranty Period or Defect Liability Period -- Support Period information, timeframe details for rectifying any defects post Production. 
-          Forms -- Any forms to be developed
-          Support For Existing System -- Existing application, system, support required
-          Analytics - Analytics features and functionalities required
-          Personalization -- Personalization Features and functionalities Required
-          role: Requirements Analyser, Analyst, Information Retriever
+          Module Name: Subject or title that defines the functionality of the test
+          Test scenario: The test scenario provides a brief description to the tester, as in providing a small overview to know about what needs to be performed and the small features, and components of the test.  
+          Test Case Description: The condition required to be checked for a given software. for eg. Check if only numbers validation is working or not for an age input box. 
+          Test Steps: Steps to be performed for the checking of the condition. 
+          Prerequisite: The conditions required to be fulfilled before the start of the test process. 
+          Test Priority: As the name suggests gives priority to the test cases that had to be performed first, or are more important and that could be performed later. 
+          Test parameters: Parameters assigned to a particular test case. 
+          Actual Result: The output that is displayed at the end. 
+          Environment Information: The environment in which the test is being performed, such as the operating system, security information, the software name, software version, etc. 
+          
+          role: {role}
           content: {content}
           """    
     prompt = PromptTemplate.from_template(template=prompt_template)
-    prompt_formatted_str: str = prompt.format(content = docs)
+    role = "Requirements Analyser, Tester, TestCase creator"
+    prompt_formatted_str: str = prompt.format(content = docs, role = role)
     model = genai.GenerativeModel('gemini-1.5-pro-latest')
     response = model.generate_content(prompt_formatted_str)  
     return response.text
