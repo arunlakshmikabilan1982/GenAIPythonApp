@@ -73,7 +73,7 @@ def main():
 
         # docx_btn, pdf_btn = st.columns([1, 1])
         # with docx_btn:
-        if st.button("Translate and Download as DOCX"):
+        if st.button("Translate into DOCX"):
             translated_docx = translate_file_in_docx(uploaded_file, source_language.lower(), target_language.lower())
             st.write("Translation complete!")
             st.download_button(
@@ -83,7 +83,7 @@ def main():
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             )
         # with pdf_btn:
-        #     if st.button("Translate and Download as PDF"):
+        #     if st.button("Translate into PDF"):
         #         translated_pdf = translate_file_in_pdf(uploaded_file, source_language.lower(), target_language.lower(), uploaded_file.name)
         #         st.write("Translation complete!")
         #         st.download_button(
