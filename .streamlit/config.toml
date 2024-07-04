@@ -1,9 +1,10 @@
 [theme]
-primaryColor="#879e82"
+primaryColor="#b7e4aa"
 backgroundColor="#78938a"
 secondaryBackgroundColor="#1e3d58"
 textColor="#fff"
 font="monospace"
+
 
 [client]
 showSidebarNavigation = false
