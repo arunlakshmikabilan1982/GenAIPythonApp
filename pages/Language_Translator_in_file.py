@@ -12,13 +12,23 @@ sidebar()
 api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
 
-# st.set_page_config(page_title="File Translator", page_icon="📄")
 st.header("File Translator 🌐")
+safetySettings = [ { 'category': 'HARM_CATEGORY_HATE_SPEECH', 'threshold': 'BLOCK_NONE' },
+  {
+    'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+    'threshold': 'BLOCK_NONE'
+  },
+  { 'category': 'HARM_CATEGORY_HARASSMENT', 'threshold': 'BLOCK_NONE' },
+  {
+    'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
+    'threshold': 'BLOCK_NONE'
+  }
+  ]
 
 model = genai.GenerativeModel('gemini-pro')
 
 def translate_text(text, source_lang, target_lang):
-    response = model.generate_content(f"Translate the following sentence from {source_lang} to {target_lang}: {text}")
+    response = model.generate_content(f"Translate the following sentence from {source_lang} to {target_lang}: {text}", safety_settings=safetySettings)
     return response.text
 
 def translate_file_in_docx(file, source_lang, target_lang):
