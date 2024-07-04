@@ -67,7 +67,7 @@ def main():
             st.download_button(
                 label="Download Translated DOCX",
                 data=translated_docx,
-                file_name=f"Translated_{uploaded_file.name}_{target_language}",
+                file_name=f"Translated_{uploaded_file.name}",
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             )
         # with pdf_btn:
