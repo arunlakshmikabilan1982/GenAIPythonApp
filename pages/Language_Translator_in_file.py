@@ -28,7 +28,7 @@ safetySettings = [ { 'category': 'HARM_CATEGORY_HATE_SPEECH', 'threshold': 'BLOC
 model = genai.GenerativeModel('gemini-pro')
 
 def translate_text(text, source_lang, target_lang):
-    response = model.generate_content(f"Translate the following sentence from {source_lang} to {target_lang}: {text}, safety_settings=safetySettings")
+    response = model.generate_content(f"Translate the following sentence from {source_lang} to {target_lang}: {text}", safety_settings=safetySettings)
     return response.text
 
 def translate_file_in_docx(file, source_lang, target_lang):
