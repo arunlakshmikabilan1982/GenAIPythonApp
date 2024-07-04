@@ -34,11 +34,12 @@ def translate_text(text, source_lang, target_lang):
 def translate_file_in_docx(file, source_lang, target_lang):
     doc = docx.Document(BytesIO(file.read()))
     translated_doc = docx.Document()
-    for para in doc.paragraphs:
-        text = para.text
-        if text:
-            translated_text = translate_text(text, source_lang, target_lang)
-            translated_doc.add_paragraph(translated_text)
+    with st.spinner('Translating DOCX...'):
+        for para in doc.paragraphs:
+            text = para.text
+            if text:
+                translated_text = translate_text(text, source_lang, target_lang)
+                translated_doc.add_paragraph(translated_text)
     translated_doc_bytes = BytesIO()
     translated_doc.save(translated_doc_bytes)
     translated_doc_bytes.seek(0)
@@ -49,12 +50,13 @@ def translate_file_in_docx(file, source_lang, target_lang):
 #     fpdf = FPDF()
 #     fpdf.add_page()    
 #     fpdf.set_font("Arial", size=12)
-#     for para in doc.paragraphs:
-#         text = para.text
-#         if text:
-#             translated_text = translate_text(text, source_lang, target_lang)
-#             st.write(translated_text)
-#             translated_text = translated_text.encode('latin-1', 'replace').decode('latin-1')
+#      with st.spinner('Translating PDF...'):
+#       for para in doc.paragraphs:
+#            text = para.text
+#            if text:
+#                translated_text = translate_text(text, source_lang, target_lang)
+#                translated_text = translated_text.encode('latin-1', 'replace').decode('latin-1')
+#                fpdf.multi_cell(0, 10, txt=translated_text)
 #             fpdf.multi_cell(0, 10, txt=translated_text)
 #     translated_pdf_filename = "Translated_file.pdf"
 #     fpdf.output(translated_pdf_filename)
