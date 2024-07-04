@@ -17,7 +17,7 @@ sidebar()
 # api_key = st.secrets["GEMINI_API_KEY"]
 from environment import GEMINI_API_KEY
 genai.configure(api_key=GEMINI_API_KEY)
-TMP_DIR = Path(__file__).resolve().parent.joinpath('data', 'tmp')
+TMP_DIR = Path(__file__).resolve().parent.parent.joinpath('data', 'tmp')
 
 # Configure Streamlit page
 # st.set_page_config(page_title="Conversational AI", page_icon="🤖")
@@ -41,7 +41,7 @@ def save_response_pdf(response,filename):
       fpdf.set_font("Arial", size=10)
       fpdf.multi_cell(0, 10, txt=response.encode().decode('latin-1', 'strict'), align="L",)
       # fpdf.cell(200, 10, txt=response, align="C")
-      newfilename = f"response-{filename}"
+      newfilename = f"response-presale-{filename}"
       tmp_location = os.path.join(TMP_DIR, newfilename)
       fpdf.output(tmp_location)
       return tmp_location, newfilename
@@ -113,7 +113,7 @@ if "llmresponse" in st.session_state:
          st.download_button(
                     label="Download the Response in DOCX",
                     data=output,
-                    file_name=f"response_{uploaded_file.name}",
+                    file_name=f"response_presale_{uploaded_file.name}",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                 )
          
