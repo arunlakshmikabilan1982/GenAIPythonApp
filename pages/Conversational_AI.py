@@ -38,7 +38,7 @@ safety_settings = [
 
 # Prompt template for generating responses
 prompt_template = """
-Use the following pieces of context to answer the question.
+Generate the answer based on the asked {question}, provide relevent asnswers.
 question: {question}.
 say Thank you....! at the end.
 """
