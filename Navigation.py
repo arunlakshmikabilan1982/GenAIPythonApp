@@ -33,6 +33,7 @@ def sidebar():
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="presale_analysis?option=REQUIREMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png" width="45px" height="45px" style="margin-right: 10px;">Pre-Sales Analysis</a>',unsafe_allow_html=True)
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="Auto_story_generator?option=REQUIREMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968875.png" width="45px" height="45px" style="margin-right: 10px;">Auto Story Generator</a>',unsafe_allow_html=True)
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="TestCase_Generator?option=REQUIREMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/10492/10492963.png" width="45px" height="45px" style="margin-right: 10px;">Test Case Generator</a>',unsafe_allow_html=True)
+        st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="Devops_Requirement_Analyser?option=REQUIREMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/10906/10906860.png" width="45px" height="45px" style="margin-right: 10px;">Devops Requirement Analyser</a>',unsafe_allow_html=True)
         
 
     elif option == 'CONTENT AI':
@@ -47,7 +48,6 @@ def sidebar():
     elif option == 'DEVELOPMENT AI':
         
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="Code_Generator?option=DEVELOPMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/1006/1006363.png" width="45px" height="45px" style="margin-right: 10px;">Code Generation AI</a>',unsafe_allow_html=True)
-        st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="Devops_Requirement_Analyzer?option=DEVELOPMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/10906/10906860.png" width="45px" height="45px" style="margin-right: 10px;">Devops AI</a>',unsafe_allow_html=True)
         
     st.sidebar.markdown('<script>window.history.pushState({}, "", window.location.pathname + "?option=" + encodeURIComponent("' + option + '"));</script>', unsafe_allow_html=True)
 
