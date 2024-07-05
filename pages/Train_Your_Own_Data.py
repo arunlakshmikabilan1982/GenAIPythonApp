@@ -84,7 +84,7 @@ def process_sitemapdocs():
 
 # Function to initialize the application
 def boot():
-    st.title("Upload Documents and Provide Sitemap URL")
+    st.title("Train your own Data")
 
     # File upload section
     st.session_state.source_docs = st.file_uploader(label="Upload Documents", type="pdf", accept_multiple_files=True)

@@ -16,13 +16,13 @@ def sidebar():
 #     st.markdown(hide_st_style,unsafe_allow_html=True)
 
     init_session_state()
-    
+    st.set_page_config(page_title="AI COPILOT", page_icon="🤖")    
     # Update session state based on URL parameters
     query_params = st.query_params
     if 'option' in query_params:
         st.session_state.selected_option = query_params['option']
 
-    st.sidebar.markdown('<h1 style="color: #ffff; font-size: 32px; text-decoration: none; display: block; padding: 8px 0; margin-bottom: 10px; ">CMS AI COPILOT</a>', unsafe_allow_html=True)
+    st.sidebar.markdown('<h1 style="color: #ffff; font-size: 32px; text-decoration: none; display: block; padding: 8px 0; margin-bottom: 10px; ">AI COPILOT for Software Phases</a>', unsafe_allow_html=True)
     options = ['REQUIREMENT AI', 'CONTENT AI', 'DEVELOPMENT AI']
     selected_index = options.index(st.session_state.selected_option) if st.session_state.selected_option in options else 0
     option = st.sidebar.selectbox('Select Page', options, index=selected_index)

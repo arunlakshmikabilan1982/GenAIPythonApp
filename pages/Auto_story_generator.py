@@ -23,7 +23,7 @@ TMP_DIR = Path(__file__).resolve().parent.parent.joinpath('data', 'tmp')
 # st.set_page_config(page_title="Conversational AI", page_icon="🤖")
 
 # Header and initial setup
-st.header("Auto Story Generator")
+st.header("Requirement to User Story Creation")
 
 st.session_state.uploaded_file = st.file_uploader("Choose the file to upload")
 def load_documents():
