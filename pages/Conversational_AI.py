@@ -12,7 +12,7 @@ load_dotenv()
 api_key = st.secrets["GEMINI_API_KEY"]
 
 # Configure Generative AI model and API
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel(model_name='gemini-pro')
 genai.configure(api_key=api_key)
 
 # Configure Streamlit page
@@ -38,30 +38,28 @@ safety_settings = [
 
 # Prompt template for generating responses
 prompt_template = """
-Use the following pieces of context to answer the question.
-question: {question}.
-say Thank you....! at the end.
+Generate a response based on the following query:
+query: {query}.
 """
 
 prompt = PromptTemplate.from_template(template=prompt_template)
 
 # Function to interact with the generative AI model
 def ask_genai_bot(input_prompt):
-    model = genai.GenerativeModel(model_name="gemini-1.5-pro-latest",
-                                  generation_config=generation_config,
-                                  safety_settings=safety_settings)
     response = model.generate_content(input_prompt)
     return response.text
 
 # Streamlit UI components
 input_prompt = st.text_area("Enter your query", key="query_input")
 # input_prompt = st.text_input("Input Prompt: ", key="input")
-prompt_formatted_str = prompt.format(question=input_prompt)
+prompt_formatted_str = prompt.format(query=input_prompt)
 
 if st.button("Search"):
     # Display loading spinner while generating response
     with st.spinner("Generating response..."):
-        response = ask_genai_bot(prompt_formatted_str)
-
-    st.subheader("The Response is")
-    st.write(response)
+        try:
+            response = ask_genai_bot(prompt_formatted_str)
+            st.subheader("The Response is")
+            st.write(response)
+        except Exception as e:
+            st.error(f"Error generating response: {str(e)}")
