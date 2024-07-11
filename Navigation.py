@@ -48,6 +48,7 @@ def sidebar():
     elif option == 'DEVELOPMENT AI':
         
         st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="Code_Generator?option=DEVELOPMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/1006/1006363.png" width="45px" height="45px" style="margin-right: 10px;">Code Generation AI</a>',unsafe_allow_html=True)
+        st.sidebar.markdown('<a style="color: #FFFF ; font-size: 16px; text-decoration: none; display: flex; align-items: center; padding: 8px 0;" href="UI_to_UX_CodeGenerator?option=DEVELOPMENT AI" target="_self"><img src="https://cdn-icons-png.flaticon.com/128/11987/11987364.png" width="45px" height="45px" style="margin-right: 10px;">UI_to_UX_CodeGenerator</a>',unsafe_allow_html=True)
         
     st.sidebar.markdown('<script>window.history.pushState({}, "", window.location.pathname + "?option=" + encodeURIComponent("' + option + '"));</script>', unsafe_allow_html=True)
 
