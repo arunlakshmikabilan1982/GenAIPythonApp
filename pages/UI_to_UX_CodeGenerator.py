@@ -6,6 +6,9 @@ import google.generativeai as genai
 from langchain import PromptTemplate
 from Navigation import sidebar
 
+
+sidebar()
+
 # Load environment variables (if necessary)
 # load_dotenv()
 
