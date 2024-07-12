@@ -40,7 +40,7 @@ def get_gemini_response(prompt_formatted_str, image):
     return response.text
 
 # Streamlit UI
-st.header("UX to UI Code Generator")
+st.header("Design to UI Code Generation")
 
 # Placeholder input for initial prompt
 input_prompt = "Describe the object in the image in detail to provide the details regarding component development"
@@ -112,7 +112,7 @@ platform_templates = {
 }
 
 
-category = st.radio("Select The Frontend Tech", ["React", "Html and CSS", "Angular"])
+category = st.radio("Select The Frontend Stack", ["React", "Html and CSS", "Angular"])
 
 if category == "React":
    selected_platform = "React"
