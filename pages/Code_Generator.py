@@ -216,6 +216,45 @@ Format each reference as [Source](link).
 
 """
 },
+"Java": {
+    "prompt_template": """Generate a Java component for the given feature: {input_query}.
+### Explanation of Each Section:
+
+1. **PROBLEM:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Intent:** Concisely state the user's main goal.
+   - **Category:** Select the appropriate category (e.g., backend service, data processing, Android application).
+   - **Sentiment:** Indicate the user's sentiment (positive, neutral, negative).
+
+2. **REQUIREMENTS:**
+   - **Platform:** Specify the Java version or platform (e.g., Java SE 11, Android API level 30).
+   - **Functionality/Feature:** Describe the specific functionality or feature needed.
+   - **Dependencies:** List any external libraries or Maven dependencies required for the code.
+   - **System Capabilities:** Mention the minimum system requirements needed to run this component effectively.
+   - **Required Versions:** Specify the required versions of libraries, frameworks, or other components.
+
+3. **SOLUTION:** 
+   - Provide a detailed response to the user’s query, including the Java code snippet. Use markdown code blocks to format the code appropriately.
+
+4. **STEP-BY-STEP PROCESS:**
+   - **Step 1:** Describe the initial setup steps (e.g., installing JDK, setting up IDE).
+   - **Step 2:** Provide instructions for integrating the generated component into an existing Java project.
+   - **Step 3:** Include tips or customization options to adapt the component for different use cases.
+
+5. **USAGE INSTRUCTIONS:**
+   - **Setup:** Instructions to set up the environment for running the code.
+     - Ensure JDK version is installed (specify version).
+     - Include steps to manage dependencies with Maven or Gradle.
+   - **Run:** Steps to compile and execute the code.
+   - **Example:** Provide an example usage scenario if applicable.
+
+6. **RESOURCES:**
+   - Include references to any sources or relevant resources.
+     - Format each reference as `[Source](link)`.
+
+"""
+}
+,
 "Js":{
    "prompt_template": """Generate a JavaScript component for the given feature: {input_query}.
 ### Explanation of Each Section:
@@ -420,7 +459,7 @@ category = st.radio("Select Category", ["Code Generation", "CMS"])
 if category == "Code Generation":
    input_query = input_query + "Generate code for this query"
 # If "Code Generation" selected, show platform options for React and ASP.NET MVC
-   selected_platform = st.selectbox("Select Platform", ["React", "ASP.NET MVC","Sitecore","C#","Js","Next.Js","Python","SQL","AEM"])
+   selected_platform = st.selectbox("Select Platform", ["React", "ASP.NET MVC","Sitecore","C#","Java","Js","Next.Js","Python","SQL","AEM"])
 else:
 # If "Normal" selected, show other platform options like Sitecore, XMCloud, Contentstack
    selected_platform = st.selectbox("Select Platform", ["Sitecore", "XMCLOUD", "Contentstack","AEM"])
