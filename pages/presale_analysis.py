@@ -25,7 +25,7 @@ TMP_DIR = Path(__file__).resolve().parent.parent.joinpath('data', 'tmp')
 # Header and initial setup
 st.header("Pre-Sale Analysis")
 
-st.session_state.uploaded_file = st.file_uploader("Choose the file to upload")
+st.session_state.uploaded_file = st.file_uploader("Please select the file you would like to upload.")
 
 def save_response_word_doc(response):
     worddoc = Document()

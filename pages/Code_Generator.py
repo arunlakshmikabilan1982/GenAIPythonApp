@@ -475,4 +475,4 @@ if st.button("Generate response"):
          if response.candidates[0].content.parts[0] is not None:
             st.markdown(response.candidates[0].content.parts[0].text, unsafe_allow_html=True)
       else:
-         st.error("Please provide a query and select a platform.")
+         st.error("Kindly specify your query and choose a platform.")

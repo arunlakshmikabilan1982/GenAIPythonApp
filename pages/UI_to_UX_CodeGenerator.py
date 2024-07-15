@@ -136,6 +136,6 @@ if st.button("Generate Component Details and Code"):
          if responsecode.candidates[0].content.parts[0] is not None:
             st.markdown(responsecode.candidates[0].content.parts[0].text, unsafe_allow_html=True)
         else:
-         st.error("Invalid Details.")
+         st.error("The details provided are invalid.")
     else:
-        st.warning("Please upload an image first.")
+        st.warning("Please ensure to upload an image first.")

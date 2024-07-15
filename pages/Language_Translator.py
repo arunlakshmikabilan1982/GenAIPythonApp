@@ -32,7 +32,7 @@ def translate_text(source_language, target_language, text):
     
     return response.text
 
-text = st.text_area("Enter text to translate:")
+text = st.text_area("Please input the text you'd like to translate:")
 source_language = st.selectbox("Source Language", ["English", "French", "Spanish", "German", "Arabic"])
 target_language = st.selectbox("Target Language", ["French", "Chinese", "Arabic", "Spanish", "German"])
 
@@ -42,4 +42,4 @@ if st.button("Translate"):
         # Display translated text
         st.write(f"Translation: {translated_text}")
     else:
-        st.warning("Please enter text to translate.")
+        st.warning("Please input the text you'd like to translate:")

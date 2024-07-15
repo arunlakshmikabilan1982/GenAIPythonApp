@@ -232,7 +232,7 @@ def uploadfile(uploaded_file):
 
         if filename and title and description and keywords:
             updated_file_path = update_excel_with_seo(uploaded_file, filename, title, description, keywords)
-            st.success("SEO meatadata updated successfully updated successfully.")
+            st.success("The SEO metadata has been successfully updated.")
  
             # Provide a download link for the updated Excel file
             with open(updated_file_path, 'rb') as f:
@@ -244,7 +244,7 @@ def uploadfile(uploaded_file):
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
     else:
-        st.error("Please upload a valid Excel file.")
+        st.error("Please ensure that the file you upload is a valid Excel file.")
 
 def main():
     st.title("SEO Metadata Generator - Assets")

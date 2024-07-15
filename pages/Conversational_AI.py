@@ -50,11 +50,11 @@ def ask_genai_bot(input_prompt):
     return response.text
 
 # Streamlit UI components
-input_prompt = st.text_area("Enter your query", key="query_input")
+input_prompt = st.text_area("Please enter your query below.", key="query_input")
 # input_prompt = st.text_input("Input Prompt: ", key="input")
 prompt_formatted_str = prompt.format(query=input_prompt)
 
-if st.button("Search"):
+if st.button("Generate response"):
     # Display loading spinner while generating response
     with st.spinner("Generating response..."):
         try:

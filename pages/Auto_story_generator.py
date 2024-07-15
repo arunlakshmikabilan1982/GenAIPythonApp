@@ -25,7 +25,7 @@ TMP_DIR = Path(__file__).resolve().parent.parent.joinpath('data', 'tmp')
 # Header and initial setup
 st.header("Requirement to User Story Creation")
 
-st.session_state.uploaded_file = st.file_uploader("Choose the file to upload")
+st.session_state.uploaded_file = st.file_uploader("Please select the file you would like to upload.")
 def load_documents():
   if "uploaded_file" in st.session_state:
     uploaded_file = st.session_state.uploaded_file
@@ -85,9 +85,9 @@ def process_docs(docs):
 
 # input = st.text_input("Ask Me Query")
 
-if st.button("Get Info"):
+if st.button("Get Information"):
          documents = load_documents()
-         with st.spinner("Generating info"):
+         with st.spinner("Generating information"):
           response = process_docs(documents)
          st.write(response)
          st.session_state.llmresponse = response      

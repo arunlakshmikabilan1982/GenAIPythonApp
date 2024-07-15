@@ -105,7 +105,7 @@ def contentgenerator_llm(retriever, query, contenttype, format):
 st.title("Content Ideation Through GENAI - Own Data")
 
 # Content Generator Functionality
-queryfromfe = st.text_area("Enter your query", key="query_input")
+queryfromfe = st.text_area("Please enter your query below.", key="query_input")
 # queryfromfe = st.text_input("Enter your query:")
 querybytype = st.checkbox("QueryByType: Article or Blog")
 

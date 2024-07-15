@@ -59,7 +59,7 @@ def process_documents():
         documents = load_documents()
         texts = split_documents(documents)
         embeddings_on_pinecone(texts)
-        st.success("Documents processed successfully and vector stores created.")
+        st.success("Documents have been processed successfully, and vector stores have been created")
         st.session_state.retriever = True  # Indicate successful processing
     except Exception as e:
         st.error(f"An error occurred: {e}")
@@ -76,7 +76,7 @@ def process_sitemapdocs():
         documents = sitemap_loader.load()
         texts = split_documents(documents)
         embeddings_on_pinecone(texts)
-        st.success("Sitemap documents processed successfully and vector stores created.")
+        st.success("The sitemap documents have been processed successfully, and vector stores have been created")
         st.session_state.retriever = True  # Indicate successful processing
     except Exception as e:
         st.error(f"An error occurred: {e}")

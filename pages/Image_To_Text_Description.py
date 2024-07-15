@@ -63,4 +63,4 @@ if st.button("Describe object in the image"):
         st.subheader("Product Description")
         st.write(response)
     else:
-        st.warning("Please upload an image first.")
+        st.warning("Before proceeding, please upload an image.")
