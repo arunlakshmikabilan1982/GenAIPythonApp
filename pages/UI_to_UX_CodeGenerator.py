@@ -47,7 +47,7 @@ input_prompt = "Describe the object in the image in detail to provide the detail
 prompt_formatted_str: str = prompt.format(question=input_prompt)
 
 # File upload section for image
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Please select the Image", type=["jpg", "jpeg", "png"])
 image = None
 
 if uploaded_file is not None:
@@ -112,7 +112,7 @@ platform_templates = {
 }
 
 
-category = st.radio("Select The Frontend Stack", ["React", "Html and CSS", "Angular"])
+category = st.radio("Please Select The Frontend Stack ", ["React", "Html and CSS", "Angular"])
 
 if category == "React":
    selected_platform = "React"

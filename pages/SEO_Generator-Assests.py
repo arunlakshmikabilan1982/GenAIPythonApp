@@ -248,7 +248,7 @@ def uploadfile(uploaded_file):
 
 def main():
     st.title("SEO Metadata Generator - Assets")
-    uploaded_file = st.file_uploader("Choose the file to upload")
+    uploaded_file = st.file_uploader("Please select the file you would like to upload.")
     if uploaded_file is not None:
         with st.spinner("Generating SEO MetaData..."):
             uploadfile(uploaded_file)

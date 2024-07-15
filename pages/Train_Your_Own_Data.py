@@ -87,13 +87,13 @@ def boot():
     st.title("Train your own Data")
 
     # File upload section
-    st.session_state.source_docs = st.file_uploader(label="Upload Documents", type="pdf", accept_multiple_files=True)
+    st.session_state.source_docs = st.file_uploader(label="Please select the file you would like to upload.", type="pdf", accept_multiple_files=True)
 
     if st.button("Submit Documents"):
         process_documents()
 
     # Sitemap URL input section
-    st.session_state.sitemapurl = st.text_area("Provide Sitemap Url", key="query_input")
+    st.session_state.sitemapurl = st.text_area("Please enter the Sitemap Url", key="query_input")
     # st.session_state.sitemapurl = st.text_input("Provide Sitemap Url")
 
     if st.button("Submit Sitemap URL"):

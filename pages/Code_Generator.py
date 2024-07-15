@@ -452,7 +452,7 @@ Format each reference as [Source](link).
 
 st.title('Auto Code Generation')
 
-input_query = st.text_area("Enter your query", key="query_input")
+input_query = st.text_area("Please enter your query below. ", key="query_input")
 
 category = st.radio("Select Category", ["Code Generation", "CMS"])
 

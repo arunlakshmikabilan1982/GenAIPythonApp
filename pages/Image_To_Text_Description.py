@@ -46,7 +46,7 @@ input_prompt = "describe the object"
 prompt_formatted_str: str = prompt.format(question=input_prompt)
 
 # File upload section for image
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Please select the image you would like to upload.", type=["jpg", "jpeg", "png"])
 image = None
 
 if uploaded_file is not None:
