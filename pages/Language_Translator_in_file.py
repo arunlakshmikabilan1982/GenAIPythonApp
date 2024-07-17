@@ -66,7 +66,7 @@ def main():
     # st.set_page_config(page_title="File Translator", page_icon="📄")
     # st.header("File Translator 🌐")
 
-    uploaded_file = st.file_uploader("Kindly upload the file. (.docx, .pdf, .txt)", type=['docx', 'pdf', 'txt'])
+    uploaded_file = st.file_uploader("Kindly upload the file.", type=['docx', 'pdf', 'txt'])
     if uploaded_file is not None:
         source_language = st.selectbox("Select Source Language", ["English", "French", "Spanish", "German", "Arabic"])
         target_language = st.selectbox("Select Target Language", ["French", "Chinese", "Arabic", "Spanish", "German"])

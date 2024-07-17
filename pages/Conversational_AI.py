@@ -51,15 +51,21 @@ def ask_genai_bot(input_prompt):
 
 # Streamlit UI components
 input_prompt = st.text_area("Please enter your query below.", key="query_input")
+
+
 # input_prompt = st.text_input("Input Prompt: ", key="input")
 prompt_formatted_str = prompt.format(query=input_prompt)
 
 if st.button("Generate response"):
+    
+    if input_prompt == "" or input_prompt is None:
+        st.warning("Please enter the query")
     # Display loading spinner while generating response
-    with st.spinner("Generating response..."):
-        try:
-            response = ask_genai_bot(prompt_formatted_str)
-            st.subheader("The Response is")
-            st.write(response)
-        except Exception as e:
-            st.error(f"Error generating response: {str(e)}")
+    else:
+        with st.spinner("Generating response..."):
+            try:
+                response = ask_genai_bot(prompt_formatted_str)
+                st.subheader("The Response is")
+                st.write(response)
+            except Exception as e:
+                st.error(f"Error generating response: {str(e)}")

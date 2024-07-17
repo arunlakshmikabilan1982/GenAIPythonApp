@@ -132,11 +132,16 @@ if querybytype:
                 "Blog Body \n")
 
 if st.button("Generate Content"):
-    # Display loading spinner while generating response
-    with st.spinner("Generating content..."):
-        retriever = retriever_existingdb()
-        if querybytype:
-            response = contentgenerator_llm(retriever, queryfromfe, contenttype.lower(), format_type.lower())
-        else:
-            response = query_llm(retriever, queryfromfe)
-    st.write("Response:", response)
+    if queryfromfe is not None and queryfromfe !="":
+        # Display loading spinner while generating response
+        with st.spinner("Generating content..."):
+            retriever = retriever_existingdb()
+            if querybytype:
+                response = contentgenerator_llm(retriever, queryfromfe, contenttype.lower(), format_type.lower())
+            else:
+                response = query_llm(retriever, queryfromfe)
+        st.write("Response:", response)
+
+    else:
+        st.warning("Please enter the query")
+
