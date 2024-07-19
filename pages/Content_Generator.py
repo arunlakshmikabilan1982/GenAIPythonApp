@@ -39,7 +39,7 @@ def retriever_existingdb():
 # Define function for querying LLm
 def query_llm(retriever, query):
     general_system_template = r""" 
-    Given a specific context, Provide 10 seperate paragraphed Answers except for Events.
+    Given a specific context {query}, Provide 10 seperate paragraphed Answers, Explain In detail, do not assume, provide details from available information, if asked for list please provide details in list.
     Do not provide paragraphed answers for Events related queries.
     Generate content as specified for Article, Blog queries and use Article and Blog generic templates, generate Article and Blog content based on requested timeframe. do not use numbering.
     Do not generate content for multiple events. 
@@ -50,6 +50,7 @@ def query_llm(retriever, query):
     Location:
     ----
     {context}
+    {query}
     ----
     """
 
