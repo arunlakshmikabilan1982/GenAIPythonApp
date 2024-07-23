@@ -30,7 +30,7 @@ def imagetotext():
       prompt = PromptTemplate.from_template(template=prompt_template)
       input = "describe the object in the image with provided template and role"
       prompt_formatted_str: str = prompt.format(question=input)
-      model = genai.GenerativeModel('gemini-pro-vision')
+      model = genai.GenerativeModel('gemini-1.5-pro-latest')
       response = model.generate_content([prompt_formatted_str,image])  
       return response.text
  
