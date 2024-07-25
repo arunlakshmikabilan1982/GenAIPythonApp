@@ -4,14 +4,12 @@ from datetime import datetime
 import streamlit as st
 from bs4 import BeautifulSoup
 
-from langchain.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_community.document_loaders.sitemap import SitemapLoader
 from Navigation import sidebar
-
-sidebar()
 
 # Initialize Streamlit page
 # st.set_page_config(page_title="Infant Food Recipes")
@@ -25,13 +23,14 @@ DOC_DIR_PATH = st.secrets["DOC_DIR_PATH"]
 current_time = datetime.now()
 formatted_time = current_time.strftime("%y%m%H%M")
 # Define paths
-TMP_DIR = Path(__file__).resolve().parent.parent.joinpath('documents',formatted_time)
+TMP_DIR = Path(__file__).resolve().parent.joinpath('documents',formatted_time)
 TMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Function to load uploaded documents
 def load_documents():
-    loader = DirectoryLoader(TMP_DIR, glob='**/*.pdf')
+    loader = DirectoryLoader(TMP_DIR.as_posix(), glob='**/*.pdf')
     documents = loader.load()
+    print(documents)
     return documents
 
 # Function to split documents into texts
@@ -60,6 +59,7 @@ def process_documents():
    try:
         for source_doc in st.session_state.source_docs:
             #
+            print(source_doc)
             save_path = Path(TMP_DIR, source_doc.name)
             with open(save_path, mode='wb') as w:
              w.write(source_doc.getvalue())
@@ -70,7 +70,7 @@ def process_documents():
             #
             st.session_state.retriever = embeddings_on_pinecone(texts)
    except Exception as e:
-            st.error(f"An error occurred: {e}")   
+            st.error(f"An error occurred: {e}")
 
 # Function to process documents from a sitemap URL
 def process_sitemapdocs():
@@ -94,10 +94,9 @@ def boot():
     st.title("Train your own Data")
 
     # File upload section
-    st.session_state.source_docs = st.file_uploader(label="Please select the file you would like to upload.", type="pdf")
-
+    st.session_state.source_docs = st.file_uploader(label="Please select the file you would like to upload.", type="pdf", accept_multiple_files=True)
+    print(st.session_state.source_docs)
     if st.button("Submit Documents") :
-     with st.spinner("Uploading the Data..."):
         if st.session_state.source_docs is not None and st.session_state.source_docs != "":
             process_documents()
 
@@ -109,7 +108,6 @@ def boot():
     # st.session_state.sitemapurl = st.text_input("Provide Sitemap Url")
 
     if st.button("Submit Sitemap URL"):
-       with st.spinner("Uploading the Data..."): 
         if st.session_state.sitemapurl is not None and st.session_state.sitemapurl != "":
             process_sitemapdocs()
     

@@ -19,3 +19,6 @@ fpdf
 rapidocr-onnxruntime
 playwright
 unstructured
+langchain-huggingface
+python-magic-bin
+unstructured[pdf]
