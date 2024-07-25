@@ -446,9 +446,40 @@ Format each reference as [Source](link).
      - Format each reference as `[Source](link)`.
 
 """
+},
+"Html and CSS":{
+    "prompt_template": """Generate HTML and CSS for the following feature: {input_query}.
+### Explanation of Each Section:
+
+1. **FEATURE DESCRIPTION:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Purpose:** State the main purpose or functionality of the feature.
+   - **Design Requirements:** Describe any specific design requirements or goals.
+
+2. **HTML STRUCTURE:**
+   - Provide the HTML structure required for implementing the feature.
+   - Use HTML tags and attributes to define elements and their hierarchy.
+   - Include placeholders or dynamic content areas if applicable.
+
+3. **CSS STYLING:**
+   - Define the CSS styles necessary to achieve the desired visual appearance.
+   - Use classes, IDs, or element selectors as needed.
+   - Consider responsiveness and browser compatibility.
+
+4. **USAGE INSTRUCTIONS:**
+   - **Integration:** Steps to integrate the HTML and CSS into a web page or application.
+   - **Example Usage:** Provide an example usage scenario if applicable.
+   - **Customization:** Tips for modifying the HTML and CSS for different use cases.
+
+5. **RESOURCES:**
+   - Include references to any sources or relevant resources for further reading.
+     - Format each reference as `[Source](link)`.
+
+"""
 }
 
 }
+
 
 st.title('Auto Code Generation')
 
@@ -459,7 +490,7 @@ category = st.radio("Select Category", ["Code Generation", "CMS"])
 if category == "Code Generation":
    input_query = input_query + "Generate code for this query"
 # If "Code Generation" selected, show platform options for React and ASP.NET MVC
-   selected_platform = st.selectbox("Select Platform", ["React", "ASP.NET MVC","Sitecore","C#","Java","Js","Next.Js","Python","SQL","AEM"])
+   selected_platform = st.selectbox("Select Platform", ["React", "Html and CSS","ASP.NET MVC","Sitecore","C#","Java","Js","Next.Js","Python","SQL","AEM"])
 else:
 # If "Normal" selected, show other platform options like Sitecore, XMCloud, Contentstack
    selected_platform = st.selectbox("Select Platform", ["Sitecore", "XMCLOUD", "Contentstack","AEM"])
