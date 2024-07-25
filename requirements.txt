@@ -13,8 +13,9 @@ docx2txt
 nest_asyncio
 langchain_community
 PyPDF
-docx2txt
 sentence-transformers
 python-docx
 fpdf
 rapidocr-onnxruntime
+playwright
+unstructured
