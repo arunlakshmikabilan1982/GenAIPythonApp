@@ -68,8 +68,8 @@ def main():
 
     uploaded_file = st.file_uploader("Kindly upload the file.", type=['docx', 'pdf', 'txt'])
     if uploaded_file is not None:
-        source_language = st.selectbox("Select Source Language", ["English", "French", "Spanish", "German", "Arabic"])
-        target_language = st.selectbox("Select Target Language", ["French", "Chinese", "Arabic", "Spanish", "German"])
+        source_language = st.selectbox("Select Source Language", ["English", "French", "Spanish", "German", "Arabic","Chinese"])
+        target_language = st.selectbox("Select Target Language", ["French", "Chinese", "Arabic", "Spanish", "German","English"])
 
         # docx_btn, pdf_btn = st.columns([1, 1])
         # with docx_btn:

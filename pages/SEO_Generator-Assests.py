@@ -70,7 +70,7 @@ def imagetotext(imageurl):
       prompt = PromptTemplate.from_template(template=prompt_template)
       input = "follow template and role provided"
       prompt_formatted_str: str = prompt.format(question=input, imageurlwords = {imageurlwords})
-      model = genai.GenerativeModel('gemini-pro-vision')
+      model = genai.GenerativeModel('gemini-1.5-pro-latest')
       response = model.generate_content([prompt_formatted_str,image])  
       return response.text
 
@@ -248,7 +248,7 @@ def uploadfile(uploaded_file):
 
 def main():
     st.title("SEO Metadata Generator - Assets")
-    uploaded_file = st.file_uploader("Please select the file you would like to upload",type=["pdf", "docx"])
+    uploaded_file = st.file_uploader("Please select the file you would like to upload",type=["xlsx"])
     if uploaded_file is not None:
         with st.spinner("Generating SEO MetaData..."):
             uploadfile(uploaded_file)
