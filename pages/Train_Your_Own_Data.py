@@ -30,7 +30,7 @@ TMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Function to load uploaded documents
 def load_documents():
-    loader = DirectoryLoader(TMP_DIR, glob='**/*.pdf')
+    loader = DirectoryLoader(TMP_DIR.as_posix(), glob='**/*.pdf')
     documents = loader.load()
     return documents
 
@@ -115,12 +115,6 @@ def boot():
     
         else:
             st.warning("Please upload the url")
-
-
-    # if st.session_state.get("retriever") is True:
-    #     st.success("Files and Sitemap data processed successfully.")
-    # elif st.session_state.get("retriever") is False:
-    #     st.error("Processing failed. Please check your input and try again.")
 
 if __name__ == '__main__':
     boot()
