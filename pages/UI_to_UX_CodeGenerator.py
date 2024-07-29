@@ -209,7 +209,7 @@ It must show all the sections mentioned above and explain each step properly and
 }
 
 
-category = st.radio("Please select the Device", ["Website", "Mobile"])
+category = st.radio("Please select the Platform", ["Website", "Mobile"])
 
 if category == "Website":
    selected_platform = st.selectbox("Select Platform", ["React", "Html and CSS","Angular"])
