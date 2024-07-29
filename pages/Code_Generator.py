@@ -476,6 +476,156 @@ Format each reference as [Source](link).
      - Format each reference as `[Source](link)`.
 
 """
+},
+"Flutter": {
+    "prompt_template": """Generate a Flutter widget or component for the following feature: {input_query}.
+### Explanation of Each Section:
+
+1. **FEATURE DESCRIPTION:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Purpose:** State the main purpose or functionality of the feature.
+   - **Design Requirements:** Describe any specific design requirements or goals.
+
+2. **FLUTTER WIDGET:**
+   - Provide the Dart code for the Flutter widget or component required for implementing the feature.
+   - Use Flutter widgets, layout elements, and any necessary packages.
+   - Include placeholders or dynamic content areas if applicable.
+
+3. **STYLING AND THEMING:**
+   - Define the styling and theming necessary to achieve the desired visual appearance.
+   - Use Flutter's `ThemeData`, `Container`, `TextStyle`, and other relevant classes.
+   - Consider responsiveness and platform differences.
+
+4. **USAGE INSTRUCTIONS:**
+   - **Integration:** Steps to integrate the Flutter widget or component into a Flutter application.
+   - **Example Usage:** Provide an example usage scenario if applicable.
+   - **Customization:** Tips for modifying the widget or component for different use cases.
+
+5. **RESOURCES:**
+   - Include references to any sources or relevant resources for further reading.
+     - Format each reference as `[Source](link)`.
+
+"""
+}
+,
+"React Native": {
+    "prompt_template": """Generate a React Native component for the following feature: {input_query}.
+### Explanation of Each Section:
+
+1. **FEATURE DESCRIPTION:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Purpose:** State the main purpose or functionality of the feature.
+   - **Design Requirements:** Describe any specific design requirements or goals.
+
+2. **REACT NATIVE COMPONENT:**
+   - Provide the JavaScript (or TypeScript) code for the React Native component required for implementing the feature.
+   - Use React Native components, styles, and any necessary libraries.
+   - Include placeholders or dynamic content areas if applicable.
+
+3. **STYLING AND THEMING:**
+   - Define the styles necessary to achieve the desired visual appearance using `StyleSheet`.
+   - Consider responsiveness and platform-specific styling (iOS vs. Android).
+
+4. **USAGE INSTRUCTIONS:**
+   - **Integration:** Steps to integrate the React Native component into a React Native application.
+   - **Example Usage:** Provide an example usage scenario if applicable.
+   - **Customization:** Tips for modifying the component for different use cases.
+
+5. **RESOURCES:**
+   - Include references to any sources or relevant resources for further reading.
+     - Format each reference as `[Source](link)`.
+
+"""
+}
+,
+"Kotlin": {
+    "prompt_template": """Generate Kotlin code for the following feature: {input_query}.
+### Explanation of Each Section:
+
+1. **FEATURE DESCRIPTION:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Purpose:** State the main purpose or functionality of the feature.
+   - **Design Requirements:** Describe any specific design requirements or goals.
+
+2. **KOTLIN CODE:**
+   - Provide the Kotlin code required to implement the feature.
+   - Use appropriate Kotlin syntax and libraries.
+   - Include placeholders or dynamic content areas if applicable.
+
+3. **STYLING AND THEMING (if applicable):**
+   - Define any styling or theming required if the feature involves UI elements.
+   - Use Android views and styles where necessary.
+
+4. **USAGE INSTRUCTIONS:**
+   - **Integration:** Steps to integrate the Kotlin code into an Android application.
+   - **Example Usage:** Provide an example usage scenario if applicable.
+   - **Customization:** Tips for modifying the code for different use cases.
+
+5. **RESOURCES:**
+   - Include references to any sources or relevant resources for further reading.
+     - Format each reference as `[Source](link)`.
+
+"""
+}
+,
+"Swift": {
+    "prompt_template": """Generate Swift code for the following feature: {input_query}.
+### Explanation of Each Section:
+
+1. **FEATURE DESCRIPTION:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Purpose:** State the main purpose or functionality of the feature.
+   - **Design Requirements:** Describe any specific design requirements or goals.
+
+2. **SWIFT CODE:**
+   - Provide the Swift code required to implement the feature.
+   - Use appropriate Swift syntax and frameworks.
+   - Include placeholders or dynamic content areas if applicable.
+
+3. **STYLING AND THEMING (if applicable):**
+   - Define any styling or theming required if the feature involves UI elements.
+   - Use SwiftUI or UIKit components as needed.
+
+4. **USAGE INSTRUCTIONS:**
+   - **Integration:** Steps to integrate the Swift code into an iOS application.
+   - **Example Usage:** Provide an example usage scenario if applicable.
+   - **Customization:** Tips for modifying the code for different use cases.
+
+5. **RESOURCES:**
+   - Include references to any sources or relevant resources for further reading.
+     - Format each reference as `[Source](link)`.
+
+"""
+}
+,
+"Xamarin": {
+    "prompt_template": """Generate a Xamarin component or code snippet for the following feature: {input_query}.
+### Explanation of Each Section:
+
+1. **FEATURE DESCRIPTION:** 
+   - **Rephrase user query:** Restate the user's query to confirm understanding.
+   - **Purpose:** State the main purpose or functionality of the feature.
+   - **Design Requirements:** Describe any specific design requirements or goals.
+
+2. **XAMARIN CODE:**
+   - Provide the C# code required to implement the feature using Xamarin.
+   - Include Xamarin.Forms or platform-specific components as needed.
+   - Include placeholders or dynamic content areas if applicable.
+
+3. **STYLING AND THEMING (if applicable):**
+   - Define any styling or theming required if the feature involves UI elements.
+   - Use Xamarin.Forms styles or platform-specific styles where necessary.
+
+4. **USAGE INSTRUCTIONS:**
+   - **Integration:** Steps to integrate the Xamarin component or code into a Xamarin application.
+   - **Example Usage:** Provide an example usage scenario if applicable.
+   - **Customization:** Tips for modifying the code for different use cases.
+
+5. **RESOURCES:**
+   - Include references to any sources or relevant resources for further reading.
+     - Format each reference as `[Source](link)`.
+
+"""
 }
 
 }
@@ -483,14 +633,18 @@ Format each reference as [Source](link).
 
 st.title('Auto Code Generation')
 
-input_query = st.text_area("Please enter your query below. ", key="query_input")
+st.session_state.input_query = st.text_area("Please enter your query below. ", key="query_input")
 
-category = st.radio("Select Category", ["Code Generation", "CMS"])
+category = st.radio("Select Category", ["Code Generation","Code Generation Mobile","CMS"])
 
 if category == "Code Generation":
-   input_query = input_query + "Generate code for this query"
+   input_query = st.session_state.input_query + "Generate code for this query"
 # If "Code Generation" selected, show platform options for React and ASP.NET MVC
    selected_platform = st.selectbox("Select Platform", ["React", "Html and CSS","ASP.NET MVC","Sitecore","C#","Java","Js","Next.Js","Python","SQL","AEM"])
+elif category == "Code Generation Mobile":
+   input_query = st.session_state.input_query + "Generate code for this query"
+# If "Code Generation" selected, show platform options for React and ASP.NET MVC
+   selected_platform = st.selectbox("Select Platform", ["Flutter","React Native","Kotlin","Swift","Xamarin"])
 else:
 # If "Normal" selected, show other platform options like Sitecore, XMCloud, Contentstack
    selected_platform = st.selectbox("Select Platform", ["Sitecore", "XMCLOUD", "Contentstack","AEM"])
