@@ -70,6 +70,7 @@ platform_templates = {
 3. **RESOURCES:**
    - Include references to any sources or relevant resources.
      - Format each reference as `[Source](link)`.
+It must show all the sections mentioned above and explain each step properly and explain solution as well
 """
     },
 
@@ -88,6 +89,7 @@ platform_templates = {
 3. **RESOURCES:**
    - Include references to any sources or relevant resources.
      - Format each reference as `[Source](link)`.
+It must show all the sections mentioned above and explain each step properly and explain solution as well
 """
     },
 
@@ -106,20 +108,115 @@ platform_templates = {
 3. **RESOURCES:**
    - Include references to any sources or relevant resources.
      - Format each reference as `[Source](link)`.
+It must show all the sections mentioned above and explain each step properly and explain solution as well
 """
-    }
+    },
+    "Flutter": {
+    "prompt_template": """Generate a Flutter widget/component for the given requirements: {input_query}.
+### Explanation of Each Section:
+
+1. **REQUIREMENTS:**
+   - **Platform:** Specify the mobile platform (iOS/Android) or specify if it's cross-platform.
+   - **Functionality/Feature:** Describe the specific functionality or feature needed.
+   - **Dependencies:** List any dependencies or libraries required for the code.
+
+2. **SOLUTION:** 
+   - Consider AI role as "Code Generator in Flutter" and Generate Dart code for {input_query}. If required, include code for supporting technologies like Flutter widgets, Dart packages, and explain the required code. Use markdown code blocks to format the code appropriately.
+
+3. **RESOURCES:**
+   - Include references to any sources or relevant resources.
+     - Format each reference as `[Source](link)`.
+It must show all the sections mentioned above and explain each step properly and explain solution as well
+"""
+},
+"React Native": {
+    "prompt_template": """Generate a React Native component for the given requirements: {input_query}.
+### Explanation of Each Section:
+
+1. **REQUIREMENTS:**
+   - **Platform(s):** Specify the platforms (iOS/Android) or if it should be cross-platform.
+   - **Functionality/Feature:** Describe the specific functionality or feature needed.
+   - **Dependencies:** List any dependencies or libraries required for the code.
+
+2. **SOLUTION:** 
+   - Consider AI role as "Code Generator in React Native" and generate JavaScript (or TypeScript) code for {input_query}. If necessary, include code for additional technologies like React Native components, native modules, and explain the required code. Use markdown code blocks to format the code appropriately.
+
+3. **RESOURCES:**
+   - Include references to any sources or relevant resources.
+     - Format each reference as `[Source](link)`.
+It must show all the sections mentioned above and explain each step properly and explain solution as well
+"""
+}
+,
+"Kotlin": {
+    "prompt_template": """Generate a Kotlin component or code snippet for the given requirements: {input_query}.
+### Explanation of Each Section:
+
+1. **REQUIREMENTS:**
+   - **Platform:** Specify the Android version or API level if relevant.
+   - **Functionality/Feature:** Describe the specific functionality or feature needed.
+   - **Dependencies:** List any dependencies or libraries required for the code.
+
+2. **SOLUTION:** 
+   - Consider AI role as "Code Generator in Kotlin" and generate Kotlin code for {input_query}. If necessary, include code for additional technologies like Android components (Activities, Fragments, etc.), XML layouts, or other relevant parts. Explain the required code and provide comments where necessary. Use markdown code blocks to format the code appropriately.
+
+3. **RESOURCES:**
+   - Include references to any sources or relevant resources.
+     - Format each reference as `[Source](link)`.
+It must show all the sections mentioned above and explain each step properly and explain solution as well
+"""
+
+},
+"Xamarin": {
+    "prompt_template": """Generate a Xamarin component or code snippet for the given requirements: {input_query}.
+### Explanation of Each Section:
+
+1. **REQUIREMENTS:**
+   - **Platform(s):** Specify whether the code is for iOS, Android, or both.
+   - **Functionality/Feature:** Describe the specific functionality or feature needed.
+   - **Dependencies:** List any dependencies or libraries required for the code.
+
+2. **SOLUTION:** 
+   - Consider AI role as "Code Generator in Xamarin" and generate C# code for {input_query}. If necessary, include code for additional technologies like Xamarin.Forms components, native platform-specific code, or XAML. Explain the required code and provide comments where necessary. Use markdown code blocks to format the code appropriately.
+
+3. **RESOURCES:**
+   - Include references to any sources or relevant resources.
+     - Format each reference as `[Source](link)`.
+"""
+}
+,
+"Swift": {
+    "prompt_template": """Generate a Swift component or code snippet for the given requirements: {input_query}.
+### Explanation of Each Section:
+
+1. **REQUIREMENTS:**
+   - **Platform:** Specify the platform (iOS, macOS, etc.) or version if relevant.
+   - **Functionality/Feature:** Describe the specific functionality or feature needed.
+   - **Dependencies:** List any dependencies or libraries required for the code.
+
+2. **SOLUTION:** 
+   - Consider AI role as "Code Generator in Swift" and generate Swift code for {input_query}. If necessary, include code for additional technologies like UIKit, SwiftUI, or other relevant frameworks. Explain the required code and provide comments where necessary. Use markdown code blocks to format the code appropriately.
+
+3. **RESOURCES:**
+   - Include references to any sources or relevant resources.
+     - Format each reference as `[Source](link)`.
+"""
+}
+
+
+
     
 }
 
 
-category = st.radio("Please Select The Frontend Stack ", ["React", "Html and CSS", "Angular"])
+category = st.radio("Please select the Device", ["Website", "Mobile"])
 
-if category == "React":
-   selected_platform = "React"
-if category == "Html and CSS":
-   selected_platform = "Html and CSS"
-if category == "Angular":
-   selected_platform = "Angular"    
+if category == "Website":
+   selected_platform = st.selectbox("Select Platform", ["React", "Html and CSS","Angular"])
+else:
+   selected_platform = st.selectbox("Select Platform", ["Flutter","React Native","Kotlin","Swift","Xamarin"])
+
+
 
 # Button to trigger Code Generation
 if st.button("Generate Component Details and Code"):
