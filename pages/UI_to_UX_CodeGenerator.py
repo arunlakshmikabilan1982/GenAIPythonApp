@@ -235,4 +235,4 @@ if st.button("Generate Component Details and Code"):
         else:
          st.error("The details provided are invalid.")
     else:
-        st.warning("Please ensure to upload an image first.")
+        st.warning("Before proceeding, please upload an image.")
