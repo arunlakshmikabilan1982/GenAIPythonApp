@@ -21,7 +21,7 @@ genai.configure(api_key=api_key)
 
 # Define prompt template for image description
 prompt_template: str = """/
-Use the following pieces of context to answer the question {question}, assume AI role as "Image Analyzer and Requirements generator, Image analyser for component development requirements"
+Use the following pieces of context to answer the question {question}, assume AI role as "UX and UI analyzer, Image Analyzer and Requirements generator, Image analyser for component development requirements, Understand the Individual UI elements in the image like color, spacing, fonts, type of UI element etc. and generate the detailed list of requirements"
 
 Identify the component from provided image and Provide Detailed component development Requirements and Code, use below format:
 Requirements: Identify the component from the image, Component level description about image, ex: if image contains "image, text" analyse the image to get the requirements to develop it has a Component any tech.
@@ -130,7 +130,7 @@ It must show all the sections mentioned above and explain each step properly and
 """
 },
 "React Native": {
-    "prompt_template": """Generate a React Native component for the given requirements: {input_query}.
+    "prompt_template": """Generate a React Native Code specific to IOS/Android Devices for the given requirements: {input_query}.
 ### Explanation of Each Section:
 
 1. **REQUIREMENTS:**
@@ -139,7 +139,7 @@ It must show all the sections mentioned above and explain each step properly and
    - **Dependencies:** List any dependencies or libraries required for the code.
 
 2. **SOLUTION:** 
-   - Consider AI role as "Code Generator in React Native" and generate JavaScript (or TypeScript) code for {input_query}. If necessary, include code for additional technologies like React Native components, native modules, and explain the required code. Use markdown code blocks to format the code appropriately.
+   - Consider AI role as "Code Generator in React Native" along with CSS and generate JavaScript (or TypeScript) code for {input_query}. If necessary, include code for additional technologies like React Native components, native modules, and explain the required code. Use markdown code blocks to format the code appropriately.
 
 3. **RESOURCES:**
    - Include references to any sources or relevant resources.
