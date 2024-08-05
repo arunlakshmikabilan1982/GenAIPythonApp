@@ -4,7 +4,7 @@ from datetime import datetime
 import streamlit as st
 from bs4 import BeautifulSoup
 
-from langchain.document_loaders import DirectoryLoader
+from langchain.document_loaders import DirectoryLoader, WebBaseLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
@@ -55,6 +55,11 @@ def embeddings_on_pinecone(texts):
     embeddings = HuggingFaceEmbeddings()
     PineconeVectorStore.from_documents(texts, embeddings, index_name=PINECONE_INDEX)
 
+def webloader():
+    loader = WebBaseLoader(st.session_state.weburl)
+    data = loader.load()
+    return data    
+
 # Function to process uploaded documents
 def process_documents():
    try:
@@ -77,9 +82,7 @@ def process_sitemapdocs():
     try:
         sitemap_loader = SitemapLoader(
             st.session_state.sitemapurl,
-            parsing_function=remove_nav_and_header_elements,
-            filter_urls=["https://www.concentrix.com/solutions", "https://www.concentrix.com/partners"]
-        )
+            parsing_function=remove_nav_and_header_elements)
         documents = sitemap_loader.load()
         texts = split_documents(documents)
         embeddings_on_pinecone(texts)
@@ -88,6 +91,17 @@ def process_sitemapdocs():
     except Exception as e:
         st.error(f"An error occurred: {e}")
         st.session_state.retriever = False  # Indicate failure
+
+def process_weburl():
+        try:    
+               #
+               documents = webloader()
+               #
+               texts = split_documents(documents)
+               #
+               st.session_state.retriever = embeddings_on_pinecone(texts)
+        except Exception as e:
+            st.error(f"An error occurred: {e}")   
 
 # Function to initialize the application
 def boot():
