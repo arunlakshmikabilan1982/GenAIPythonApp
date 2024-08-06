@@ -130,5 +130,12 @@ def boot():
         else:
             st.warning("Please upload the url")
 
+    # Web URL Section
+    st.session_state.weburl = st.text_input("Provide Web Url")    
+
+    if st.button("Submit WebURL"): 
+         if st.session_state.weburl is not None and st.session_state.weburl != "":  
+             process_weburl()
+
 if __name__ == '__main__':
     boot()
