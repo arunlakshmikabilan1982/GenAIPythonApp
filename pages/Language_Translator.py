@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 from Navigation import sidebar
 
@@ -8,12 +8,12 @@ sidebar()
  
 load_dotenv()
 api_key = st.secrets["GEMINI_API_KEY"]
-genai.configure(api_key=api_key)
- 
+client = genai.Client(api_key=api_key) 
+
 # st.set_page_config(page_title="Language Translator", page_icon="🌐")
 st.header("Interactive Language Translation Tool")
  
-model = genai.GenerativeModel('gemini-pro')
+# model = genai.GenerativeModel('gemini-pro')
 
 def translate_text(source_language, target_language, text):
     language_codes = {
@@ -28,7 +28,7 @@ def translate_text(source_language, target_language, text):
     target_code = language_codes[target_language]
 
     with st.spinner("Translating..."):
-        response = model.generate_content(f"Translate the following sentence from language code {source_code} to {target_code}: {text}")
+        response = client.models.generate_content(model="gemini-2.0-flash", contents =f"Translate the following sentence from language code {source_code} to {target_code}: {text}")
     
     return response.text
 
